@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="306dp"
         android:layout_height="331dp"
         android:backgroundTint="@color/white_transparent"
@@ -86,7 +87,23 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/goToRegisterScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="onTextClick"
+        android:text="No Account yet? Register Here"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="0.193" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
