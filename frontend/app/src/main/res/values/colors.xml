@@ -8,4 +8,7 @@
 
     <color name="red">#EF0707</color>
     <color name="green">#66BF3A</color>
+
+    <color name="blue_transparent">#BC006ED3</color>
+    <color name="green_transparent">#C366BF3A</color>
 </resources>

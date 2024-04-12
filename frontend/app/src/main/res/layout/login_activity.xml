@@ -76,7 +76,7 @@
                 android:paddingLeft="10dp" />
 
             <Button
-                android:id="@+id/myButton"
+                android:id="@+id/loginButton"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
