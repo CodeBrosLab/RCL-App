@@ -11,6 +11,13 @@
 
     <string name="rewards">Your Rewards</string>
 
+    <string name="quantity">Quantity</string>
+    <string name="amountHint">Amount</string>
+
+    <string name="listTxtTitle">List</string>
+
     //Buttons
     <string name="gotorcl">GO TO RCL</string>
+    <string name="addBtnTxt">ADD</string>
+    <string name="recycleBtnTxt">RECYCLE</string>
 </resources>

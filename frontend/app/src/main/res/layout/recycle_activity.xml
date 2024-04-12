@@ -41,6 +41,83 @@
             android:textStyle="bold" />
 
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/quantity"
+                        android:layout_gravity="center"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="45dp"
+                        android:layout_gravity="right"
+                        android:background="@drawable/rounded_corners_background">
+
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="@string/amountHint"
+                            android:inputType="number"
+                            android:backgroundTint="@color/grey"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginTop="5dp">
+
+                            <ImageButton
+                                android:id="@+id/arrowUpBtn"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                app:srcCompat="@drawable/arrow_up" />
+
+                            <ImageButton
+                                android:id="@+id/arrowDownBtn"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                app:srcCompat="@drawable/arrow_down" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/blue"
+            android:text="@string/addBtnTxt" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="249dp"
             android:layout_height="150dp"
@@ -55,25 +132,13 @@
                 android:layout_gravity="center|top"
                 android:layout_marginTop="10dp"
 
-                android:text="List"
+                android:text="@string/listTxtTitle"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
         </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/addBtn"
-            android:layout_width="133dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/blue"
-            android:text="ADD" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/arrow_up" />
 
     </androidx.cardview.widget.CardView>
 
@@ -81,7 +146,7 @@
         android:id="@+id/recycleBtn"
         android:layout_width="239dp"
         android:layout_height="45dp"
-        android:text="RECYCLE"
+        android:text="@string/recycleBtnTxt"
         android:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

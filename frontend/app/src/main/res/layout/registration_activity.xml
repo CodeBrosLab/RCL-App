@@ -54,7 +54,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_corners_textbox"
+                android:background="@drawable/rounded_corners_background"
                 android:paddingLeft="10dp" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_corners_textbox"
+                android:background="@drawable/rounded_corners_background"
                 android:inputType="textPassword"
                 android:paddingLeft="10dp" />
 
@@ -89,7 +89,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_corners_textbox"
+                android:background="@drawable/rounded_corners_background"
                 android:inputType="textPassword"
                 android:paddingLeft="10dp" />
 
