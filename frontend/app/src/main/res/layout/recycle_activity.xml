@@ -23,7 +23,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="342dp"
-        android:layout_height="647dp"
+        android:layout_height="600dp"
         android:backgroundTint="@color/white_transparent"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -164,9 +164,9 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="249dp"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="390dp"
+            android:layout_marginTop="370dp"
             android:backgroundTint="@color/grey_transparent"
             app:cardCornerRadius="20dp">
 
@@ -179,6 +179,16 @@
                 android:text="@string/listTxtTitle"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/requestItemsListView"
+                android:layout_marginTop="40dp"
+                android:background="@color/grey_transparent">
+
+                
+            </ListView>
 
         </androidx.cardview.widget.CardView>
 
