@@ -1,12 +1,12 @@
 package com.example.rcl_app;
 
-public class RequestItem
+public class RequestListItem
 {
     private int requestItemId;
     private String requestItemName;
     private int requestItemQuantity;
 
-    public RequestItem(int requestItemId, String requestItemName, int requestItemQuantity)
+    public RequestListItem(int requestItemId, String requestItemName, int requestItemQuantity)
     {
         this.requestItemId = requestItemId;
         this.requestItemName = requestItemName;

@@ -12,10 +12,10 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-public class RequestListItemAdapter extends ArrayAdapter<RequestItem>
+public class RequestListItemAdapter extends ArrayAdapter<RequestListItem>
 {
 
-    public RequestListItemAdapter(@NonNull Context context, List<RequestItem> items)
+    public RequestListItemAdapter(@NonNull Context context, List<RequestListItem> items)
     {
         super(context, 0, items);
     }
@@ -23,10 +23,10 @@ public class RequestListItemAdapter extends ArrayAdapter<RequestItem>
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        RequestItem item = getItem(position);
+        RequestListItem item = getItem(position);
 
         if (convertView == null)
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.request_rewards_list_single_item_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.request_list_single_item_layout, parent, false);
 
 
         TextView requestItemQuantityTxt = convertView.findViewById(R.id.requestItemQuantityTxt);
