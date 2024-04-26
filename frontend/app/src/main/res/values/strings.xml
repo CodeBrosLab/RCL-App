@@ -10,6 +10,7 @@
     <string name="r_password">Repeat Password</string>
 
     <string name="rewards">Your Rewards</string>
+    <string name="requests">REQUESTS</string>
 
     <string name="quantity">Quantity</string>
     <string name="amountHint">Amount</string>
@@ -24,4 +25,5 @@
     <string name="recycleBtnTxt">SUBMIT</string>
 
     <string name="credits">Tzialidis - Zhuang - Hadjiantonis - Moschou</string>
+    <string name="statistics">STATISTICS</string>
 </resources>
