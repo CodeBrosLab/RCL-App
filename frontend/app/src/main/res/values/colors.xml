@@ -6,6 +6,8 @@
     <color name="white_transparent">#E6FFFFFF</color>
     <color name="grey">#D9D9D9</color>
     <color name="grey_transparent">#CED9D9D9</color>
+    <color name="grey_transparent_for_admin_request_list">#CC615F5F</color>
+
 
     <color name="red">#EF0707</color>
     <color name="green">#66BF3A</color>

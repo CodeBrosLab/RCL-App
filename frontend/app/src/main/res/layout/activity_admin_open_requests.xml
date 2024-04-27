@@ -6,16 +6,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/recycling_image">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="43dp"
+        android:src="@drawable/rcl_logo_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023">
+
+    </ImageView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="383dp"
-        android:layout_height="659dp"
+        android:layout_width="380dp"
+        android:layout_height="600dp"
         android:backgroundTint="@color/white_transparent"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="20dp">
+
+                <ExpandableListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="550dp"
+                    android:id="@+id/openRequestsList"/>
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.cardview.widget.CardView>
 
@@ -30,20 +57,6 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.344"
         app:srcCompat="@drawable/back_btn" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="130dp"
-        android:layout_height="43dp"
-        android:src="@drawable/rcl_logo_header"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023">
-
-    </ImageView>
 
     <Button
         android:id="@+id/statsBtn"

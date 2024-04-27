@@ -26,4 +26,6 @@
 
     <string name="credits">Tzialidis - Zhuang - Hadjiantonis - Moschou</string>
     <string name="statistics">STATISTICS</string>
+    <string name="approve">APPROVE</string>
+    <string name="decline">DECLINE</string>
 </resources>
