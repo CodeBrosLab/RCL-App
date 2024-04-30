@@ -1,4 +1,4 @@
-package com.example.rcl_app;
+package com.example.rcl_app.model;
 
 import java.util.List;
 

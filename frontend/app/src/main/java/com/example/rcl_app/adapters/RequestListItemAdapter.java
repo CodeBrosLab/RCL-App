@@ -1,4 +1,4 @@
-package com.example.rcl_app;
+package com.example.rcl_app.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.example.rcl_app.R;
+import com.example.rcl_app.model.RequestListItem;
 
 import java.util.List;
 

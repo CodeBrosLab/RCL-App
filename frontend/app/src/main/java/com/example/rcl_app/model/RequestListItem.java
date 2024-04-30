@@ -1,4 +1,4 @@
-package com.example.rcl_app;
+package com.example.rcl_app.model;
 
 public class RequestListItem
 {
@@ -11,6 +11,14 @@ public class RequestListItem
         this.requestItemId = requestItemId;
         this.requestItemName = requestItemName;
         this.requestItemQuantity = requestItemQuantity;
+    }
+
+    public boolean hasName(String aName) {
+        return this.requestItemName.equals(aName);
+    }
+
+    public void addQuantity(int quantity) {
+        this.requestItemQuantity += quantity;
     }
 
     public String getRequestItemName()

@@ -1,15 +1,16 @@
-package com.example.rcl_app;
+package com.example.rcl_app.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.example.rcl_app.R;
+import com.example.rcl_app.model.RequestListItem;
 
 import java.util.List;
 

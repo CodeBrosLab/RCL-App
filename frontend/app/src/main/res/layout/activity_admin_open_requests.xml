@@ -33,13 +33,12 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_height="match_parent"
             app:cardCornerRadius="20dp">
 
                 <ExpandableListView
-                    android:layout_width="wrap_content"
-                    android:layout_height="550dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
                     android:id="@+id/openRequestsList"/>
 
         </androidx.cardview.widget.CardView>
@@ -47,7 +46,7 @@
     </androidx.cardview.widget.CardView>
 
     <ImageButton
-        android:id="@+id/backBtn"
+        android:id="@+id/backToLogin"
         android:layout_width="53dp"
         android:layout_height="43dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +65,7 @@
         android:text="@string/statistics"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/backBtn"
+        app:layout_constraintStart_toEndOf="@+id/backToLogin"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.35" />
 

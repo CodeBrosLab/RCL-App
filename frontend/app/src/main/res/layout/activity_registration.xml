@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/recycling_image"
-    tools:context="com.example.rcl_app.LoginActivity">
+    tools:context="com.example.rcl_app.activities.LoginActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -55,7 +55,8 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_corners_background"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:id="@+id/registrationUsernameInput"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +73,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_corners_background"
                 android:inputType="textPassword"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:id="@+id/registrationPasswordInput"/>
 
 
             <TextView
@@ -91,7 +93,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_corners_background"
                 android:inputType="textPassword"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:id="@+id/registrationPasswordRetypeInput"/>
 
 
             <Button

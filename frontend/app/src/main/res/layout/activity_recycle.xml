@@ -73,11 +73,12 @@
 
 
                     <EditText
-                        android:layout_width="match_parent"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/grey"
-                        android:hint="@string/amountHint"
-                        android:inputType="number" />
+                        android:text="0"
+                        android:inputType="number"
+                        android:id="@+id/amountInput"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -86,13 +87,13 @@
                         android:orientation="vertical">
 
                         <ImageButton
-                            android:id="@+id/arrowUpBtn"
+                            android:id="@+id/arrowUpButton"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             app:srcCompat="@drawable/arrow_up" />
 
                         <ImageButton
-                            android:id="@+id/arrowDownBtn"
+                            android:id="@+id/arrowDownButton"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             app:srcCompat="@drawable/arrow_down" />
@@ -140,8 +141,8 @@
 
 
                     <Spinner
-                        android:id="@+id/type_id"
-                        android:layout_width="match_parent"
+                        android:id="@+id/recycleTypesSpinner"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"></Spinner>
 
 
@@ -155,7 +156,7 @@
 
 
         <Button
-            android:id="@+id/addBtn"
+            android:id="@+id/addToListButton"
             android:layout_width="133dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -196,7 +197,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/recycleBtn"
+        android:id="@+id/recycleButton"
         android:layout_width="256dp"
         android:layout_height="44dp"
         android:backgroundTint="@color/green"
@@ -204,17 +205,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.328"
-        app:layout_constraintStart_toEndOf="@+id/backBtn"
+        app:layout_constraintStart_toEndOf="@+id/backToRewardsButton"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.555" />
 
     <ImageButton
-        android:id="@+id/backBtn"
+        android:id="@+id/backToRewardsButton"
         android:layout_width="53dp"
         android:layout_height="43dp"
         android:layout_marginStart="44dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recycleBtn"
+        app:layout_constraintTop_toTopOf="@+id/recycleButton"
         app:srcCompat="@drawable/back_btn" />
 
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/recycling_image"
-    tools:context="com.example.rcl_app.LoginActivity">
+    tools:context="com.example.rcl_app.activities.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -57,7 +57,8 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_corners_background"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:id="@+id/loginUsernameInput"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,7 +75,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_corners_background"
                 android:inputType="textPassword"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:id="@+id/loginPasswordInput"/>
 
             <Button
                 android:id="@+id/loginButton"
@@ -95,7 +97,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:onClick="onTextClick"
         android:text="No Account yet? Register Here"
         android:textColor="@color/black"
         android:textSize="18sp"

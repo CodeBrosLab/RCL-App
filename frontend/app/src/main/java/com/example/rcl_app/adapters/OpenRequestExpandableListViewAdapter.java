@@ -1,4 +1,4 @@
-package com.example.rcl_app;
+package com.example.rcl_app.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.rcl_app.R;
+import com.example.rcl_app.model.OpenRequestDetails;
+import com.example.rcl_app.model.RequestListItem;
 
 import java.util.List;
 
@@ -86,6 +91,21 @@ public class OpenRequestExpandableListViewAdapter extends BaseExpandableListAdap
 
         OpenRequestBodyListAdapter bodyListAdapter = new OpenRequestBodyListAdapter(context, requestItemsList);
         adminOpenRequestBodyList.setAdapter(bodyListAdapter);
+
+        approveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Needs to be implemented", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        declineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                data.remove(i);
+                notifyDataSetChanged();
+            }
+        });
 
         return view;
     }
