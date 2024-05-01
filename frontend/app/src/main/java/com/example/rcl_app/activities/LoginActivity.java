@@ -39,11 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent yourRewardsIntent = new Intent(LoginActivity.this, YourRewardsActivity.class);
-                startActivity(yourRewardsIntent);
+                //Intent yourRewardsIntent = new Intent(LoginActivity.this, YourRewardsActivity.class);
+                //startActivity(yourRewardsIntent);
 
-                //Intent adminOpenRequestsIntent = new Intent(LoginActivity.this, AdminOpenRequestsActivity.class);
-                //startActivity(adminOpenRequestsIntent);
+                Intent adminOpenRequestsIntent = new Intent(LoginActivity.this, AdminOpenRequestsActivity.class);
+                startActivity(adminOpenRequestsIntent);
             }
         });
 

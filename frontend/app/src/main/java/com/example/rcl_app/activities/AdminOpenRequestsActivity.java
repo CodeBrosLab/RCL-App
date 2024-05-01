@@ -57,6 +57,14 @@ public class AdminOpenRequestsActivity extends AppCompatActivity {
         List<RequestListItem> requestList = new ArrayList<>();
         requestList.add(new RequestListItem(1, "Glass", 10));
         requestList.add(new RequestListItem(2, "Paper", 30));
+        /*requestList.add(new RequestListItem(2, "Paper", 30));
+        requestList.add(new RequestListItem(2, "Paper", 30));
+        requestList.add(new RequestListItem(2, "Paper", 30));
+        requestList.add(new RequestListItem(2, "Paper", 30));
+        requestList.add(new RequestListItem(2, "Paper", 30));
+        requestList.add(new RequestListItem(2, "Paper", 30));
+        requestList.add(new RequestListItem(2, "Paper", 30));*/
+
 
         openRequestDetailsList.add(new OpenRequestDetails(1, "thanos", requestList));
         openRequestDetailsList.add(new OpenRequestDetails(2, "andreas", requestList));

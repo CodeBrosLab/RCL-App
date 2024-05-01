@@ -15,14 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:clickable="true">
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
+                android:layout_height="200dp"
                 android:id="@+id/adminOpenRequestBodyList"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/white_transparent">
+                android:background="@color/white_transparent"
+                android:clickable="true">
 
             </ListView>
 
