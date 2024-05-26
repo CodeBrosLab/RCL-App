@@ -1,5 +1,7 @@
 package com.example.rcl_app.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rcl_app.R;
+import com.example.rcl_app.http_requests.RecycleItemsOkHttpHandler;
 import com.example.rcl_app.model.RequestListItem;
 import com.example.rcl_app.adapters.RequestListItemAdapter;
 
@@ -31,6 +34,9 @@ public class RecycleActivity extends AppCompatActivity {
     private RequestListItemAdapter itemAdapter;
     private ListView requestItemsListView;
 
+    private RecycleItemsOkHttpHandler recycleHttp = new RecycleItemsOkHttpHandler();
+
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +50,18 @@ public class RecycleActivity extends AppCompatActivity {
         recycleButton = findViewById(R.id.recycleButton);
         recycleTypesSpinner = findViewById(R.id.recycleTypesSpinner);
 
+        Intent intent = getIntent();
+        Integer userid = intent.getIntExtra("userid",-1); //if is -1 then we did not pass it right
 
         recycleTypesList = new ArrayList<>();
-        recycleTypesList.add("Glass");
-        recycleTypesList.add("Paper");
+
+        context = this;
+
+        try {
+            recycleTypesList = recycleHttp.getRecycleItems(context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ArrayAdapter<String> recycleTypesAdapter = new ArrayAdapter<>(RecycleActivity.this,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
@@ -55,10 +69,7 @@ public class RecycleActivity extends AppCompatActivity {
 
         recycleTypesSpinner.setAdapter(recycleTypesAdapter);
 
-        //TESTING THE ITEMS LAYOUT...
         requestList = new ArrayList<>();
-        requestList.add(new RequestListItem(1, "Glass", 10));
-        requestList.add(new RequestListItem(2, "Paper", 30));
 
         //I needed to create a custom adapter.
         //The RequestItem class matches exactly to the Request-Item from the database model

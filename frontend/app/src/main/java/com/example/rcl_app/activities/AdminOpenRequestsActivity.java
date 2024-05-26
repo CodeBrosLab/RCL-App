@@ -44,7 +44,10 @@ public class AdminOpenRequestsActivity extends AppCompatActivity {
         statsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(AdminOpenRequestsActivity.this, "Needs to be implemented", Toast.LENGTH_SHORT).show();
+
+                Intent statsIntent = new Intent(AdminOpenRequestsActivity.this, StatisticsActivity.class);
+                startActivity(statsIntent);
+
             }
         });
 

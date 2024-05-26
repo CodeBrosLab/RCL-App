@@ -36,29 +36,56 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:layout_marginTop="10dp"
-            android:text="@string/rewards"
+            android:text="@string/top3"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="249dp"
-            android:layout_height="319dp"
+            android:layout_height="87dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="70dp"
             android:backgroundTint="@color/blue_transparent"
             app:cardCornerRadius="20dp">
 
             <TextView
-                android:id="@+id/totalPoints"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Your Total Points Are:"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:id="@+id/top1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold" />
 
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="249dp"
+            android:layout_height="87dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="200dp"
+            android:backgroundTint="@color/blue_transparent"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/top2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="249dp"
+            android:layout_height="87dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="320dp"
+            android:backgroundTint="@color/blue_transparent"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/top3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold" />
 
         </androidx.cardview.widget.CardView>
 
@@ -66,12 +93,13 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/rclButton"
+        android:id="@+id/backButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/green"
-        android:text="@string/gotorcl"
+        android:onClick="backToAdminActivity"
+        android:text="Back"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

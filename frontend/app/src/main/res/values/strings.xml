@@ -28,4 +28,7 @@
     <string name="statistics">STATISTICS</string>
     <string name="approve">APPROVE</string>
     <string name="decline">DECLINE</string>
+
+    <string name="ipv4">192.168.1.228</string>
+    <string name="top3">Top 3 Recyclers</string>
 </resources>
