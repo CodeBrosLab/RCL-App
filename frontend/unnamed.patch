@@ -1,0 +1,1325 @@
+Index: frontend/.idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/.idea/inspectionProfiles/Project_Default.xml b/frontend/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+--- /dev/null	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/.idea/inspectionProfiles/Project_Default.xml	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -0,0 +1,8 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="AutoCloseableResource" enabled="true" level="WARNING" enabled_by_default="true">
++      <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,okhttp3.Call,execute" />
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+Index: frontend/app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/AndroidManifest.xml b/frontend/app/src/main/AndroidManifest.xml
+--- a/frontend/app/src/main/AndroidManifest.xml	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/AndroidManifest.xml	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -5,6 +5,7 @@
+     <uses-permission android:name="android.permission.INTERNET" />
+ 
+     <application
++        android:usesCleartextTraffic="true"
+         android:allowBackup="true"
+         android:dataExtractionRules="@xml/data_extraction_rules"
+         android:fullBackupContent="@xml/backup_rules"
+@@ -43,6 +44,9 @@
+         <activity android:name=".activities.AdminOpenRequestsActivity"
+             android:exported="false">
+ 
++        </activity>
++        <activity android:name=".activities.StatisticsActivity"
++            android:exported="false">
+ 
+         </activity>
+ 
+Index: frontend/app/src/main/java/com/example/rcl_app/activities/AdminOpenRequestsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/activities/AdminOpenRequestsActivity.java b/frontend/app/src/main/java/com/example/rcl_app/activities/AdminOpenRequestsActivity.java
+--- a/frontend/app/src/main/java/com/example/rcl_app/activities/AdminOpenRequestsActivity.java	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/java/com/example/rcl_app/activities/AdminOpenRequestsActivity.java	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
+@@ -10,10 +10,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+-import com.example.rcl_app.model.OpenRequestDetails;
+-import com.example.rcl_app.adapters.OpenRequestExpandableListViewAdapter;
+ import com.example.rcl_app.R;
+-import com.example.rcl_app.model.RequestListItem;
++import com.example.rcl_app.adapters.OpenRequestExpandableListViewAdapter;
++import com.example.rcl_app.http_requests.AdminOpenRequestsOkHttpHandler;
++import com.example.rcl_app.model.OpenRequestDetails;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+@@ -44,34 +44,44 @@
+         statsBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-                Toast.makeText(AdminOpenRequestsActivity.this, "Needs to be implemented", Toast.LENGTH_SHORT).show();
++                Intent statsIntent = new Intent(AdminOpenRequestsActivity.this, StatisticsActivity.class);
++                startActivity(statsIntent);
+             }
+         });
+ 
+-
+-        //TESTING...
+         openRequestsListView = findViewById(R.id.openRequestsList);
+ 
+         openRequestDetailsList = new ArrayList<>();
+ 
+-        List<RequestListItem> requestList = new ArrayList<>();
+-        requestList.add(new RequestListItem(1, "Glass", 10));
+-        requestList.add(new RequestListItem(2, "Paper", 30));
+-        /*requestList.add(new RequestListItem(2, "Paper", 30));
+-        requestList.add(new RequestListItem(2, "Paper", 30));
+-        requestList.add(new RequestListItem(2, "Paper", 30));
+-        requestList.add(new RequestListItem(2, "Paper", 30));
+-        requestList.add(new RequestListItem(2, "Paper", 30));
+-        requestList.add(new RequestListItem(2, "Paper", 30));
+-        requestList.add(new RequestListItem(2, "Paper", 30));*/
+-
++        try {
++            AdminOpenRequestsOkHttpHandler aorOkHttpHandler = new AdminOpenRequestsOkHttpHandler(this);
++            openRequestDetailsList = aorOkHttpHandler.getOpenRequestDetailsList();
+ 
+-        openRequestDetailsList.add(new OpenRequestDetails(1, "thanos", requestList));
+-        openRequestDetailsList.add(new OpenRequestDetails(2, "andreas", requestList));
+-        openRequestDetailsList.add(new OpenRequestDetails(3, "george", requestList));
+-
+-        openRequestAdapter = new OpenRequestExpandableListViewAdapter(this, openRequestDetailsList);
+-        openRequestsListView.setAdapter(openRequestAdapter);
++            if (openRequestDetailsList != null) {
++                openRequestAdapter = new OpenRequestExpandableListViewAdapter(this, openRequestDetailsList);
++                openRequestsListView.setAdapter(openRequestAdapter);
++            } else {
++                Toast.makeText(this, "Failed to load requests", Toast.LENGTH_SHORT).show();
++            }
++        } catch (Exception e) {
++            e.printStackTrace();
++            Toast.makeText(this, "Error loading requests", Toast.LENGTH_SHORT).show();
++        }
++
++
+ 
+     }
+ }
++
++//        requestList.add(new RequestListItem(1, "Glass", 10));
++//        requestList.add(new RequestListItem(2, "Paper", 30));
++//        /*requestList.add(new RequestListItem(2, "Paper", 30));
++//        requestList.add(new RequestListItem(2, "Paper", 30));
++//        requestList.add(new RequestListItem(2, "Paper", 30));
++//        requestList.add(new RequestListItem(2, "Paper", 30));
++//        requestList.add(new RequestListItem(2, "Paper", 30));
++//        requestList.add(new RequestListItem(2, "Paper", 30));
++//        requestList.add(new RequestListItem(2, "Paper", 30));*///
++//
++//        openRequestDetailsList.add(new OpenRequestDetails(1, "thanos", requestList));//        openRequestDetailsList.add(new OpenRequestDetails(2, "andreas", requestList));
++//        openRequestDetailsList.add(new OpenRequestDetails(3, "george", requestList));
+\ No newline at end of file
+Index: frontend/app/src/main/java/com/example/rcl_app/activities/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/activities/LoginActivity.java b/frontend/app/src/main/java/com/example/rcl_app/activities/LoginActivity.java
+--- a/frontend/app/src/main/java/com/example/rcl_app/activities/LoginActivity.java	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/java/com/example/rcl_app/activities/LoginActivity.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -2,24 +2,26 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+-import android.widget.ListView;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
+ import com.example.rcl_app.R;
+-
+-import java.util.ArrayList;
+-import java.util.List;
++import com.example.rcl_app.http_requests.LoginORegisterOkHttpHandler;
+ 
+ public class LoginActivity extends AppCompatActivity {
+ 
+     private EditText loginUsernameInput, loginPasswordInput;
+     private Button loginButton;
+     private TextView goToRegistrationScreen;
++    private LoginORegisterOkHttpHandler loginHttp = new LoginORegisterOkHttpHandler();
++
++    private String ip;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -31,19 +33,36 @@
+         loginButton = findViewById(R.id.loginButton);
+         goToRegistrationScreen = findViewById(R.id.goToRegisterScreen);
+ 
+-        String usernameAsAString = loginUsernameInput.getText().toString();
+-        String passwordAsAString = loginPasswordInput.getText().toString();
+-
+-        //assume we checked the validity for now
++        ip = getString(R.string.ipv4);
+ 
+         loginButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-                //Intent yourRewardsIntent = new Intent(LoginActivity.this, YourRewardsActivity.class);
+-                //startActivity(yourRewardsIntent);
++
++                String usernameAsAString = loginUsernameInput.getText().toString();
++                String passwordAsAString = loginPasswordInput.getText().toString();
+ 
+-                Intent adminOpenRequestsIntent = new Intent(LoginActivity.this, AdminOpenRequestsActivity.class);
+-                startActivity(adminOpenRequestsIntent);
++                Integer idResponse = -2;
++
++                try {
++                    idResponse = loginHttp.loginPostRequest("http://" + ip + ":8080/login", usernameAsAString, passwordAsAString);
++                } catch (Exception e) {
++                    e.printStackTrace();
++                }
++                //Toast.makeText(LoginActivity.this,idResponse.toString(),Toast.LENGTH_LONG).show();
++
++                if(idResponse == 1){
++                    Intent adminOpenRequestsIntent = new Intent(LoginActivity.this, AdminOpenRequestsActivity.class);
++                    startActivity(adminOpenRequestsIntent);
++                }
++                else if(idResponse > 0){
++                    Intent yourRewardsIntent = new Intent(LoginActivity.this, YourRewardsActivity.class);
++                    yourRewardsIntent.putExtra("userid",idResponse);
++                    startActivity(yourRewardsIntent);
++                }
++                else
++                Toast.makeText(LoginActivity.this,"Wrong Username or Password",Toast.LENGTH_LONG).show();
++
+             }
+         });
+ 
+@@ -54,6 +73,7 @@
+                 startActivity(registrationIntent);
+             }
+         });
++    }
++
+ 
+-    }
+-}
+\ No newline at end of file
++}
+Index: frontend/app/src/main/java/com/example/rcl_app/activities/RecycleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/activities/RecycleActivity.java b/frontend/app/src/main/java/com/example/rcl_app/activities/RecycleActivity.java
+--- a/frontend/app/src/main/java/com/example/rcl_app/activities/RecycleActivity.java	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/java/com/example/rcl_app/activities/RecycleActivity.java	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
+@@ -1,6 +1,9 @@
+ package com.example.rcl_app.activities;
+ 
++import android.content.Context;
++import android.content.Intent;
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.View;
+ import android.widget.ArrayAdapter;
+ import android.widget.Button;
+@@ -13,12 +16,19 @@
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import com.example.rcl_app.R;
++import com.example.rcl_app.http_requests.RecycleItemsOkHttpHandler;
++import com.example.rcl_app.http_requests.RecycleRequestOkHttpHandler;
+ import com.example.rcl_app.model.RequestListItem;
+ import com.example.rcl_app.adapters.RequestListItemAdapter;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++import com.google.gson.Gson;
++import com.google.gson.GsonBuilder;
++import com.google.gson.JsonArray;
++import com.google.gson.JsonObject;
++
+ public class RecycleActivity extends AppCompatActivity {
+ 
+     private EditText amountInput;
+@@ -31,6 +41,9 @@
+     private RequestListItemAdapter itemAdapter;
+     private ListView requestItemsListView;
+ 
++    private RecycleItemsOkHttpHandler recycleHttp = new RecycleItemsOkHttpHandler();
++
++    private Context context = this;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -44,10 +57,17 @@
+         recycleButton = findViewById(R.id.recycleButton);
+         recycleTypesSpinner = findViewById(R.id.recycleTypesSpinner);
+ 
++        Intent intent = getIntent();
++        Integer userid = intent.getIntExtra("userid",-1); //if is -1 then we did not pass it right
+ 
+         recycleTypesList = new ArrayList<>();
+-        recycleTypesList.add("Glass");
+-        recycleTypesList.add("Paper");
++
++
++        try {
++            recycleTypesList = recycleHttp.getRecycleItems(context);
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
+ 
+         ArrayAdapter<String> recycleTypesAdapter = new ArrayAdapter<>(RecycleActivity.this,
+                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+@@ -55,10 +75,7 @@
+ 
+         recycleTypesSpinner.setAdapter(recycleTypesAdapter);
+ 
+-        //TESTING THE ITEMS LAYOUT...
+         requestList = new ArrayList<>();
+-        requestList.add(new RequestListItem(1, "Glass", 10));
+-        requestList.add(new RequestListItem(2, "Paper", 30));
+ 
+         //I needed to create a custom adapter.
+         //The RequestItem class matches exactly to the Request-Item from the database model
+@@ -110,7 +127,25 @@
+         recycleButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+-                Toast.makeText(getApplicationContext(), "This needs to be implemented.", Toast.LENGTH_SHORT).show();
++
++                JsonArray jsonArray = new JsonArray();
++                Gson gson = new GsonBuilder().setPrettyPrinting().create();
++                for (RequestListItem item : requestList) {
++                    jsonArray.add(gson.toJsonTree(item));
++                }
++                JsonObject jsonObject = new JsonObject();
++                jsonObject.addProperty("user_id", userid);
++                jsonObject.add("requestItemsList", jsonArray); //as the backend
++
++                String json = gson.toJson(jsonObject);
++
++                RecycleRequestOkHttpHandler rrOkHttp = new RecycleRequestOkHttpHandler(context);
++                try {
++                    rrOkHttp.recyclePostRequest(json);
++                } catch (Exception e) {
++                    e.printStackTrace();
++                }
++
+             }
+         });
+     }
+@@ -128,7 +163,7 @@
+         }
+ 
+         if(!existsInTheList)
+-            requestList.add(new RequestListItem(0, recycleType, amount));
++            requestList.add(new RequestListItem(recycleType, amount));
+ 
+         itemAdapter.notifyDataSetChanged();
+     }
+Index: frontend/app/src/main/java/com/example/rcl_app/activities/RegistrationActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/activities/RegistrationActivity.java b/frontend/app/src/main/java/com/example/rcl_app/activities/RegistrationActivity.java
+--- a/frontend/app/src/main/java/com/example/rcl_app/activities/RegistrationActivity.java	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/java/com/example/rcl_app/activities/RegistrationActivity.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -5,26 +5,28 @@
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+-import android.widget.ListView;
+ import android.widget.Toast;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import com.example.rcl_app.R;
+-
+-import java.util.ArrayList;
+-import java.util.List;
++import com.example.rcl_app.http_requests.LoginORegisterOkHttpHandler;
+ 
+ public class RegistrationActivity extends AppCompatActivity {
+ 
+     private EditText registrationUsernameInput, registrationPasswordInput, registrationPasswordRetypeInput;
+     private Button registerButton;
++    private LoginORegisterOkHttpHandler registerHttp = new LoginORegisterOkHttpHandler();
++
++    private String ip;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_registration);
+ 
++        ip = getString(R.string.ipv4);
++
+         registrationUsernameInput = findViewById(R.id.registrationUsernameInput);
+         registrationPasswordInput = findViewById(R.id.registrationPasswordInput);
+         registrationPasswordRetypeInput = findViewById(R.id.registrationPasswordRetypeInput);
+@@ -39,8 +41,16 @@
+                 String passwordRetypeAsAString = registrationPasswordRetypeInput.getText().toString();
+ 
+                 if(arePasswordInputsTheSame(passwordAsAString, passwordRetypeAsAString)) {
+-                    Intent yourRewardsIntent = new Intent(RegistrationActivity.this, YourRewardsActivity.class);
+-                    startActivity(yourRewardsIntent);
++
++                    Integer idResponse = null;
++                    try {
++                        idResponse = registerHttp.loginPostRequest("http://"+ ip +":8080/register", usernameAsAString, passwordAsAString);
++                    } catch (Exception e) {
++                        e.printStackTrace();
++                    }
++
++                    Intent loginIntent = new Intent(RegistrationActivity.this, LoginActivity.class);
++                    startActivity(loginIntent);
+                 } else {
+                     Toast.makeText(RegistrationActivity.this, "Password fields do not contain the same password", Toast.LENGTH_SHORT).show();
+                 }
+Index: frontend/app/src/main/java/com/example/rcl_app/activities/StatisticsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/activities/StatisticsActivity.java b/frontend/app/src/main/java/com/example/rcl_app/activities/StatisticsActivity.java
+new file mode 100644
+--- /dev/null	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/java/com/example/rcl_app/activities/StatisticsActivity.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -0,0 +1,48 @@
++package com.example.rcl_app.activities;
++
++import android.content.Context;
++import android.content.Intent;
++import android.os.Bundle;
++import android.view.View;
++import android.widget.TextView;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import com.example.rcl_app.R;
++import com.example.rcl_app.http_requests.Top3UsersOkHttpHandler;
++
++import org.w3c.dom.Text;
++
++
++public class StatisticsActivity extends AppCompatActivity {
++
++    private Top3UsersOkHttpHandler top3Users;
++    private Context context = this;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_statistics);
++
++        TextView top1, top2, top3;
++        top1 = findViewById(R.id.top1);
++        top2 = findViewById(R.id.top2);
++        top3 = findViewById(R.id.top3);
++
++        try {
++            top3Users = new Top3UsersOkHttpHandler(context, top1, top2, top3);
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++
++
++    }
++
++    public void backToAdminActivity(View view){
++        Intent adminOpenRequestsIntent = new Intent(StatisticsActivity.this, AdminOpenRequestsActivity.class);
++        startActivity(adminOpenRequestsIntent);
++    }
++
++
++}
++
+Index: frontend/app/src/main/java/com/example/rcl_app/activities/YourRewardsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/activities/YourRewardsActivity.java b/frontend/app/src/main/java/com/example/rcl_app/activities/YourRewardsActivity.java
+--- a/frontend/app/src/main/java/com/example/rcl_app/activities/YourRewardsActivity.java	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/java/com/example/rcl_app/activities/YourRewardsActivity.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -1,32 +1,48 @@
+ package com.example.rcl_app.activities;
+ 
++import android.content.Context;
+ import android.content.Intent;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+-import android.widget.ListView;
++import android.widget.TextView;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import com.example.rcl_app.R;
+-
+-import java.util.ArrayList;
+-import java.util.List;
++import com.example.rcl_app.http_requests.UserPointsOkHttpHandler;
+ 
+ public class YourRewardsActivity extends AppCompatActivity {
+ 
+     private Button rclButton;
++    private UserPointsOkHttpHandler getUserPoints;
++    private int userPoints;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_your_rewards);
+ 
++        getUserPoints = new UserPointsOkHttpHandler(this);
++
++        Intent intent = getIntent();
++        Integer userid = intent.getIntExtra("userid",-1); //if is -1 then we did not pass it right
++
++        try {
++            userPoints = getUserPoints.getUserPoints(userid);
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++
++        TextView totalPoints = findViewById(R.id.totalPoints);
++        totalPoints.setText("Your Total Points Are: " + userPoints);
++
+         rclButton = findViewById(R.id.rclButton);
+         rclButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent recycleIntent = new Intent(YourRewardsActivity.this, RecycleActivity.class);
++                recycleIntent.putExtra("userid",userid);
+                 startActivity(recycleIntent);
+             }
+         });
+Index: frontend/app/src/main/java/com/example/rcl_app/http_requests/LoginORegisterOkHttpHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/http_requests/LoginORegisterOkHttpHandler.java b/frontend/app/src/main/java/com/example/rcl_app/http_requests/LoginORegisterOkHttpHandler.java
+new file mode 100644
+--- /dev/null	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/java/com/example/rcl_app/http_requests/LoginORegisterOkHttpHandler.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -0,0 +1,35 @@
++package com.example.rcl_app.http_requests;
++
++import android.os.StrictMode;
++
++import okhttp3.MediaType;
++import okhttp3.OkHttpClient;
++import okhttp3.Request;
++import okhttp3.RequestBody;
++import okhttp3.Response;
++
++public class LoginORegisterOkHttpHandler {
++
++    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
++    private OkHttpClient client;
++
++    public LoginORegisterOkHttpHandler() {
++        // Strict mode for simplicity (generally not recommended for production)
++        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
++        StrictMode.setThreadPolicy(policy);
++
++        this.client = new OkHttpClient();
++    }
++
++    public int loginPostRequest(String url, String username, String password) throws Exception {
++
++        String json = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}";
++        RequestBody body = RequestBody.create(json, JSON);
++
++        Request request = new Request.Builder().url(url).post(body).build();
++        Response response = client.newCall(request).execute();
++
++       return Integer.parseInt(response.body().string());
++
++    }
++}
+Index: frontend/app/src/main/java/com/example/rcl_app/http_requests/RecycleItemsOkHttpHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/http_requests/RecycleItemsOkHttpHandler.java b/frontend/app/src/main/java/com/example/rcl_app/http_requests/RecycleItemsOkHttpHandler.java
+new file mode 100644
+--- /dev/null	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/java/com/example/rcl_app/http_requests/RecycleItemsOkHttpHandler.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -0,0 +1,53 @@
++package com.example.rcl_app.http_requests;
++import com.example.rcl_app.R;
++
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.io.IOException;
++import java.util.ArrayList;
++import java.util.ResourceBundle;
++
++import okhttp3.OkHttpClient;
++import okhttp3.Request;
++import okhttp3.Response;
++
++import android.content.Context;
++
++public class RecycleItemsOkHttpHandler {
++
++    private Context context;
++    private String ip;
++
++    public ArrayList<String> getRecycleItems(Context context) throws IOException, JSONException {
++
++        ip = context.getString(R.string.ipv4);
++
++        OkHttpClient client = new OkHttpClient();
++        Request request = new Request.Builder()
++                .url("http://"+ ip +":8080/items").build();
++
++        Response response = client.newCall(request).execute();
++
++        ArrayList<String> recycleItems = new ArrayList<>();
++
++        try {
++            JSONArray jsonArray = new JSONArray(response.body().string());
++
++            for (int i = 0; i < jsonArray.length(); i++) {
++                JSONObject jsonObject = jsonArray.getJSONObject(i);
++                String name = jsonObject.getString("name");
++                recycleItems.add(name);
++            }
++        } catch (IOException | JSONException e) {
++            e.printStackTrace();
++            throw e;
++        } finally {
++            response.close();
++        }
++
++        return recycleItems;
++    }
++}
++
+Index: frontend/app/src/main/java/com/example/rcl_app/http_requests/Top3UsersOkHttpHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/http_requests/Top3UsersOkHttpHandler.java b/frontend/app/src/main/java/com/example/rcl_app/http_requests/Top3UsersOkHttpHandler.java
+new file mode 100644
+--- /dev/null	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/java/com/example/rcl_app/http_requests/Top3UsersOkHttpHandler.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -0,0 +1,50 @@
++package com.example.rcl_app.http_requests;
++
++import android.content.Context;
++import android.widget.TextView;
++
++import com.example.rcl_app.R;
++
++import org.json.JSONArray;
++import org.json.JSONObject;
++import org.w3c.dom.Text;
++
++import okhttp3.OkHttpClient;
++import okhttp3.Request;
++import okhttp3.Response;
++
++public class Top3UsersOkHttpHandler {
++
++    private Context context;
++    private String ip;
++
++
++    public Top3UsersOkHttpHandler(Context context, TextView top1,TextView top2,TextView top3) throws Exception {
++
++        this.context = context;
++        ip = context.getString(R.string.ipv4);
++
++        OkHttpClient client = new OkHttpClient();
++        Request request = new Request.Builder().url("http://"+ ip +":8080/top3Users").build();
++        Response response = client.newCall(request).execute();
++
++        JSONArray jsonArray = new JSONArray(response.body().string());
++
++        for (int i = 0; i < jsonArray.length(); i++) {
++
++            JSONObject jsonObject = jsonArray.getJSONObject(i);
++            String username = jsonObject.getString("username");
++            String points = jsonObject.getString("total_points");
++
++            if(i==0)
++                top1.setText(username + " " +points);
++            else if(i==1)
++                top2.setText(username + " " +points);
++            if(i==2)
++                top3.setText(username + " " +points);
++
++        }
++
++
++    }
++}
+Index: frontend/app/src/main/java/com/example/rcl_app/http_requests/UserPointsOkHttpHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/http_requests/UserPointsOkHttpHandler.java b/frontend/app/src/main/java/com/example/rcl_app/http_requests/UserPointsOkHttpHandler.java
+new file mode 100644
+--- /dev/null	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/java/com/example/rcl_app/http_requests/UserPointsOkHttpHandler.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -0,0 +1,43 @@
++package com.example.rcl_app.http_requests;
++
++import android.content.Context;
++
++import com.example.rcl_app.R;
++
++import org.json.JSONObject;
++
++import okhttp3.OkHttpClient;
++import okhttp3.Request;
++import okhttp3.Response;
++
++public class UserPointsOkHttpHandler {
++
++    private int totalUserPoints;
++    private Context context;
++    private String ip;
++
++    public UserPointsOkHttpHandler(Context context){
++        this.context = context;
++        ip = context.getString(R.string.ipv4);
++    }
++
++    public int getUserPoints(int userid) throws Exception {
++
++
++        OkHttpClient client = new OkHttpClient();
++        Request request = new Request.Builder().url("http://"+ ip +":8080/user/" + userid).build();
++        Response response = client.newCall(request).execute();
++        try {
++            String responseBody = response.body().string();
++
++            JSONObject jsonObject = new JSONObject(responseBody);
++
++            totalUserPoints = jsonObject.getInt("total_points");
++
++        }catch (Exception e){
++            e.printStackTrace();
++        }
++
++        return totalUserPoints;
++    }
++}
+Index: frontend/app/src/main/res/layout/activity_statistics.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/res/layout/activity_statistics.xml b/frontend/app/src/main/res/layout/activity_statistics.xml
+new file mode 100644
+--- /dev/null	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/res/layout/activity_statistics.xml	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -0,0 +1,110 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="@drawable/recycling_image">
++
++    <ImageView
++        android:id="@+id/imageView"
++        android:layout_width="130dp"
++        android:layout_height="43dp"
++        android:src="@drawable/rcl_logo_header"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.056"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.023">
++
++    </ImageView>
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/cardView"
++        android:layout_width="323dp"
++        android:layout_height="447dp"
++        android:backgroundTint="@color/white_transparent"
++        app:cardCornerRadius="10dp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center|top"
++            android:layout_marginTop="10dp"
++            android:text="@string/top3"
++            android:textSize="30sp"
++            android:textStyle="bold" />
++
++        <androidx.cardview.widget.CardView
++            android:layout_width="249dp"
++            android:layout_height="87dp"
++            android:layout_gravity="center_horizontal"
++            android:layout_marginTop="70dp"
++            android:backgroundTint="@color/blue_transparent"
++            app:cardCornerRadius="20dp">
++
++            <TextView
++                android:id="@+id/top1"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:textStyle="bold" />
++
++
++        </androidx.cardview.widget.CardView>
++
++        <androidx.cardview.widget.CardView
++            android:layout_width="249dp"
++            android:layout_height="87dp"
++            android:layout_gravity="center_horizontal"
++            android:layout_marginTop="200dp"
++            android:backgroundTint="@color/blue_transparent"
++            app:cardCornerRadius="20dp">
++
++            <TextView
++                android:id="@+id/top2"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:textStyle="bold" />
++
++        </androidx.cardview.widget.CardView>
++
++        <androidx.cardview.widget.CardView
++            android:layout_width="249dp"
++            android:layout_height="87dp"
++            android:layout_gravity="center_horizontal"
++            android:layout_marginTop="320dp"
++            android:backgroundTint="@color/blue_transparent"
++            app:cardCornerRadius="20dp">
++
++            <TextView
++                android:id="@+id/top3"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:textStyle="bold" />
++
++        </androidx.cardview.widget.CardView>
++
++
++    </androidx.cardview.widget.CardView>
++
++    <Button
++        android:id="@+id/backButton"
++        android:layout_width="200dp"
++        android:layout_height="wrap_content"
++        android:layout_gravity="center"
++        android:backgroundTint="@color/green"
++        android:onClick="backToAdminActivity"
++        android:text="Back"
++        android:textColor="@color/white"
++        android:textSize="20sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/cardView" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: frontend/app/src/main/res/layout/activity_your_rewards.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/res/layout/activity_your_rewards.xml b/frontend/app/src/main/res/layout/activity_your_rewards.xml
+--- a/frontend/app/src/main/res/layout/activity_your_rewards.xml	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/res/layout/activity_your_rewards.xml	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -42,46 +42,27 @@
+ 
+         <androidx.cardview.widget.CardView
+             android:layout_width="249dp"
+-            android:layout_height="134dp"
++            android:layout_height="319dp"
+             android:layout_gravity="center_horizontal"
+             android:layout_marginTop="70dp"
+             android:backgroundTint="@color/blue_transparent"
+             app:cardCornerRadius="20dp">
+ 
+             <TextView
++                android:id="@+id/totalPoints"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="top"
+-                android:layout_marginTop="10dp"
+                 android:layout_marginLeft="10dp"
+-                android:text="Financial"
+-                android:textColor="@color/white"
+-                android:textSize="20dp" />
+-
+-
+-        </androidx.cardview.widget.CardView>
+-
+-
+-        <androidx.cardview.widget.CardView
+-            android:layout_width="249dp"
+-            android:layout_height="134dp"
+-            android:layout_gravity="center_horizontal"
+-            android:layout_marginTop="230dp"
+-            android:backgroundTint="@color/green_transparent"
+-            app:cardCornerRadius="20dp">
+-
+-            <TextView
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:layout_gravity="top"
+                 android:layout_marginTop="10dp"
+-                android:layout_marginLeft="10dp"
+-                android:text="Product"
++                android:text="Your Total Points Are:"
+                 android:textColor="@color/white"
+                 android:textSize="20dp" />
+ 
++
+         </androidx.cardview.widget.CardView>
+ 
++
+     </androidx.cardview.widget.CardView>
+ 
+     <Button
+Index: frontend/app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/res/values/strings.xml b/frontend/app/src/main/res/values/strings.xml
+--- a/frontend/app/src/main/res/values/strings.xml	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/res/values/strings.xml	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -28,4 +28,7 @@
+     <string name="statistics">STATISTICS</string>
+     <string name="approve">APPROVE</string>
+     <string name="decline">DECLINE</string>
++
++    <string name="ipv4">192.168.1.228</string>
++    <string name="top3">Top 3 Recyclers</string>
+ </resources>
+\ No newline at end of file
+Index: frontend/app/src/main/res/xml/network_security_config.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/res/xml/network_security_config.xml b/frontend/app/src/main/res/xml/network_security_config.xml
+--- a/frontend/app/src/main/res/xml/network_security_config.xml	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ b/frontend/app/src/main/res/xml/network_security_config.xml	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
+@@ -2,7 +2,7 @@
+ <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+     <network-security-config>
+         <domain-config cleartextTrafficPermitted="true">
+-            <domain includeSubdomains="true">192.168..</domain>
++            <domain includeSubdomains="true">localhost</domain>
+         </domain-config>
+     </network-security-config>
+ </PreferenceScreen>
+\ No newline at end of file
+Index: frontend/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/build.gradle b/frontend/app/build.gradle
+--- a/frontend/app/build.gradle	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/build.gradle	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
+@@ -29,6 +29,7 @@
+ }
+ 
+ dependencies {
++    implementation 'com.google.code.gson:gson:2.8.8'
+     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+     implementation 'androidx.appcompat:appcompat:1.6.1'
+     implementation 'com.google.android.material:material:1.5.0'
+Index: frontend/app/src/main/java/com/example/rcl_app/http_requests/AdminOpenRequestsOkHttpHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/http_requests/AdminOpenRequestsOkHttpHandler.java b/frontend/app/src/main/java/com/example/rcl_app/http_requests/AdminOpenRequestsOkHttpHandler.java
+new file mode 100644
+--- /dev/null	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
++++ b/frontend/app/src/main/java/com/example/rcl_app/http_requests/AdminOpenRequestsOkHttpHandler.java	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
+@@ -0,0 +1,111 @@
++package com.example.rcl_app.http_requests;
++
++import android.content.Context;
++import android.util.Log;
++
++import com.example.rcl_app.R;
++import com.example.rcl_app.model.OpenRequestDetails;
++import com.example.rcl_app.model.RequestListItem;
++import com.google.gson.JsonArray;
++import com.google.gson.JsonElement;
++import com.google.gson.JsonObject;
++import com.google.gson.JsonParser;
++
++import java.io.IOException;
++import java.util.ArrayList;
++import java.util.List;
++
++import okhttp3.MediaType;
++import okhttp3.OkHttpClient;
++import okhttp3.Request;
++import okhttp3.Response;
++
++public class AdminOpenRequestsOkHttpHandler {
++
++    private static final String TAG = "AdminOpenRequestsHandler";
++    private String ip;
++    private Context context;
++    private OkHttpClient client;
++    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
++
++    private List<OpenRequestDetails> openRequestDetailsList;
++
++    public AdminOpenRequestsOkHttpHandler(Context context) throws Exception {
++        this.context = context;
++        this.client = new OkHttpClient();
++
++        ip = context.getString(R.string.ipv4);
++        Request request = new Request.Builder()
++                .url("http://" + ip + ":8080/open_requests")
++                .build();
++
++        try {
++            Response response = client.newCall(request).execute();
++            if (response.isSuccessful() && response.body() != null) {
++                String jsonResponse = response.body().string();
++                Log.d(TAG, "Response: " + jsonResponse);
++
++                JsonArray jsonArray = JsonParser.parseString(jsonResponse).getAsJsonArray();
++
++                if (jsonArray != null) {
++                    openRequestDetailsList = new ArrayList<>();
++
++                    for (int i = 0; i < jsonArray.size(); i++) {
++                        JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
++                        int requestId = getIntFromJson(jsonObject, "request_id");
++                        int userId = getIntFromJson(jsonObject, "user_id");
++                        String username = getStringFromJson(jsonObject, "username");
++
++                        Log.d(TAG, "Parsed Request - requestId: " + requestId + ", userId: " + userId + ", username: " + username);
++
++                        JsonArray itemsArray = jsonObject.getAsJsonArray("requestItemsList");
++                        List<RequestListItem> requestItems = new ArrayList<>();
++
++                        if (itemsArray != null) {
++                            for (int j = 0; j < itemsArray.size(); j++) {
++                                JsonObject itemObject = itemsArray.get(j).getAsJsonObject();
++                                String name = getStringFromJson(itemObject, "name");
++                                int quantity = getIntFromJson(itemObject, "quantity");
++
++                                Log.d(TAG, "Parsed Item - name: " + name + ", quantity: " + quantity);
++
++                                requestItems.add(new RequestListItem( name, quantity));
++                            }
++                        } else {
++                            Log.w(TAG, "Items array is null for requestId: " + requestId);
++                        }
++
++                        openRequestDetailsList.add(new OpenRequestDetails(requestId, userId, username, requestItems));
++                    }
++
++                    for (OpenRequestDetails details : openRequestDetailsList) {
++                        Log.i(TAG, "User: " + details.getUsername());
++                        for (RequestListItem item : details.getRequestItemsList()) {
++                            Log.i(TAG, "Item: " + item.getRequestItemName() + ", Quantity: " + item.getRequestItemQuantity());
++                        }
++                    }
++                } else {
++                    Log.e(TAG, "JSON array is null");
++                }
++            } else {
++                Log.e(TAG, "Response was not successful or body is null");
++            }
++        } catch (IOException e) {
++            Log.e(TAG, "Error in executing request", e);
++        }
++    }
++
++    private int getIntFromJson(JsonObject jsonObject, String memberName) {
++        JsonElement element = jsonObject.get(memberName);
++        return (element != null && !element.isJsonNull()) ? element.getAsInt() : 0;
++    }
++
++    private String getStringFromJson(JsonObject jsonObject, String memberName) {
++        JsonElement element = jsonObject.get(memberName);
++        return (element != null && !element.isJsonNull()) ? element.getAsString() : "";
++    }
++
++    public List<OpenRequestDetails> getOpenRequestDetailsList() {
++        return openRequestDetailsList;
++    }
++}
+Index: frontend/app/src/main/java/com/example/rcl_app/http_requests/RecycleRequestOkHttpHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/http_requests/RecycleRequestOkHttpHandler.java b/frontend/app/src/main/java/com/example/rcl_app/http_requests/RecycleRequestOkHttpHandler.java
+new file mode 100644
+--- /dev/null	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
++++ b/frontend/app/src/main/java/com/example/rcl_app/http_requests/RecycleRequestOkHttpHandler.java	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
+@@ -0,0 +1,39 @@
++package com.example.rcl_app.http_requests;
++
++import android.content.Context;
++import android.util.Log;
++
++import com.example.rcl_app.R;
++
++import okhttp3.MediaType;
++import okhttp3.OkHttpClient;
++import okhttp3.Request;
++import okhttp3.RequestBody;
++import okhttp3.Response;
++
++
++public class RecycleRequestOkHttpHandler {
++
++    private String ip;
++    private Context context;
++    private OkHttpClient client;
++    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
++
++    public RecycleRequestOkHttpHandler (Context context) {
++        this.context = context;
++        this.client = new OkHttpClient();
++    }
++
++    public void recyclePostRequest(String json) throws Exception {
++
++        ip = context.getString(R.string.ipv4);
++        RequestBody body = RequestBody.create(json, JSON);
++
++        Request request = new Request.Builder().url("http://" + ip + ":8080/recycle_request").post(body).build();
++        Response response = client.newCall(request).execute();
++
++        System.out.println(json);
++
++    }
++
++}
+Index: frontend/app/src/main/java/com/example/rcl_app/model/OpenRequestDetails.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/model/OpenRequestDetails.java b/frontend/app/src/main/java/com/example/rcl_app/model/OpenRequestDetails.java
+--- a/frontend/app/src/main/java/com/example/rcl_app/model/OpenRequestDetails.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/java/com/example/rcl_app/model/OpenRequestDetails.java	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
+@@ -3,26 +3,32 @@
+ import java.util.List;
+ 
+ public class OpenRequestDetails {
+-    private int requestId;
++    private int request_id;
++    private int user_id;
+     private String username;
+     private List<RequestListItem> requestItemsList;
+ 
+-    public OpenRequestDetails(int requestId, String username, List<RequestListItem> items) {
+-        this.requestId = requestId;
++    public OpenRequestDetails(int request_id, int user_id, String username, List<RequestListItem> items) {
++        this.request_id = request_id;
++        this.user_id = user_id;
+         this.username = username;
+         this.requestItemsList = items;
+     }
+ 
+     public int getRequestId() {
+-        return requestId;
++        return request_id;
++    }
++
++    public int getUserId() {
++        return user_id;
+     }
+ 
+     public String getUsername() {
+         return username;
+     }
+ 
+-    public List<RequestListItem> getRequestItemsList()
+-    {
++    public List<RequestListItem> getRequestItemsList() {
+         return requestItemsList;
+     }
+ }
++
+Index: frontend/app/src/main/java/com/example/rcl_app/model/RequestListItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/model/RequestListItem.java b/frontend/app/src/main/java/com/example/rcl_app/model/RequestListItem.java
+--- a/frontend/app/src/main/java/com/example/rcl_app/model/RequestListItem.java	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/java/com/example/rcl_app/model/RequestListItem.java	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
+@@ -1,14 +1,15 @@
+ package com.example.rcl_app.model;
+ 
+-public class RequestListItem
+-{
+-    private int requestItemId;
++import com.google.gson.annotations.SerializedName;
++
++public class RequestListItem {
++
++    @SerializedName("name")
+     private String requestItemName;
++    @SerializedName("quantity")
+     private int requestItemQuantity;
+ 
+-    public RequestListItem(int requestItemId, String requestItemName, int requestItemQuantity)
+-    {
+-        this.requestItemId = requestItemId;
++    public RequestListItem(String requestItemName, int requestItemQuantity) {
+         this.requestItemName = requestItemName;
+         this.requestItemQuantity = requestItemQuantity;
+     }
+@@ -21,13 +22,11 @@
+         this.requestItemQuantity += quantity;
+     }
+ 
+-    public String getRequestItemName()
+-    {
++    public String getRequestItemName() {
+         return requestItemName;
+     }
+ 
+-    public int getRequestItemQuantity()
+-    {
++    public int getRequestItemQuantity() {
+         return requestItemQuantity;
+     }
+ }
+Index: frontend/app/src/main/res/layout/activity_recycle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/app/src/main/res/layout/activity_recycle.xml b/frontend/app/src/main/res/layout/activity_recycle.xml
+--- a/frontend/app/src/main/res/layout/activity_recycle.xml	(revision ca0cfb9f5a606fe51ccbd352c178f43034e004c8)
++++ b/frontend/app/src/main/res/layout/activity_recycle.xml	(revision e2ae389ea1b31b268378c482b1e903ce93419119)
+@@ -36,7 +36,7 @@
+             android:layout_height="wrap_content"
+             android:layout_gravity="center|top"
+             android:layout_marginTop="10dp"
+-            android:text="@string/rewards"
++            android:text="Recycle"
+             android:textSize="30sp"
+             android:textStyle="bold" />
+ 
+Index: frontend/app/src/main/java/com/example/rcl_app/httpRequests/OkHttpHandler.java
+===================================================================
+diff --git a/frontend/app/src/main/java/com/example/rcl_app/httpRequests/OkHttpHandler.java b/frontend/app/src/main/java/com/example/rcl_app/httpRequests/OkHttpHandler.java
+deleted file mode 100644
+--- a/frontend/app/src/main/java/com/example/rcl_app/httpRequests/OkHttpHandler.java	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
++++ /dev/null	(revision ad04bf5068dc8cfad9777a7c811c9554ba004199)
+@@ -1,63 +0,0 @@
+-package com.example.rcl_app.httpRequests;
+-
+-import android.os.StrictMode;
+-
+-import java.io.IOException;
+-
+-import okhttp3.MediaType;
+-import okhttp3.OkHttpClient;
+-import okhttp3.Request;
+-import okhttp3.RequestBody;
+-import okhttp3.Response;
+-
+-public class OkHttpHandler {
+-
+-    public OkHttpHandler() {
+-
+-        //Strict mode for simplicity
+-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+-        StrictMode.setThreadPolicy(policy);
+-    }
+-
+-    public String makeHttpRequest(String url, String method, String jsonInputString) throws IOException {
+-        OkHttpClient client = new OkHttpClient().newBuilder().build();
+-        RequestBody body = null;
+-
+-        if (jsonInputString != null) {
+-            body = RequestBody.create(jsonInputString, MediaType.parse("text/plain"));
+-        }
+-
+-        Request.Builder builder = new Request.Builder().url(url);
+-
+-        switch (method.toUpperCase()) {
+-            case "GET":
+-                builder.get();
+-                break;
+-            case "POST":
+-                builder.post(body);
+-                break;
+-            case "PUT":
+-                builder.put(body);
+-                break;
+-            case "DELETE":
+-                if (body != null) {
+-                    builder.delete(body);
+-                } else {
+-                    builder.delete();
+-                }
+-                break;
+-            default:
+-                throw new IllegalArgumentException("Unknown method: " + method);
+-        }
+-
+-        Request request = builder.build();
+-        Response response = null;
+-        try {
+-            response = client.newCall(request).execute();
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-        }
+-
+-        return response.body().string();
+-    }
+-}
