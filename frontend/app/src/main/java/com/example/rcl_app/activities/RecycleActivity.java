@@ -3,6 +3,7 @@ package com.example.rcl_app.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,11 +17,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rcl_app.R;
 import com.example.rcl_app.http_requests.RecycleItemsOkHttpHandler;
+import com.example.rcl_app.http_requests.RecycleRequestOkHttpHandler;
 import com.example.rcl_app.model.RequestListItem;
 import com.example.rcl_app.adapters.RequestListItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class RecycleActivity extends AppCompatActivity {
 
@@ -36,7 +43,7 @@ public class RecycleActivity extends AppCompatActivity {
 
     private RecycleItemsOkHttpHandler recycleHttp = new RecycleItemsOkHttpHandler();
 
-    private Context context;
+    private Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +62,6 @@ public class RecycleActivity extends AppCompatActivity {
 
         recycleTypesList = new ArrayList<>();
 
-        context = this;
 
         try {
             recycleTypesList = recycleHttp.getRecycleItems(context);
@@ -121,7 +127,25 @@ public class RecycleActivity extends AppCompatActivity {
         recycleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "This needs to be implemented.", Toast.LENGTH_SHORT).show();
+
+                JsonArray jsonArray = new JsonArray();
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                for (RequestListItem item : requestList) {
+                    jsonArray.add(gson.toJsonTree(item));
+                }
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("user_id", userid);
+                jsonObject.add("requestItemsList", jsonArray); //as the backend
+
+                String json = gson.toJson(jsonObject);
+
+                RecycleRequestOkHttpHandler rrOkHttp = new RecycleRequestOkHttpHandler(context);
+                try {
+                    rrOkHttp.recyclePostRequest(json);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }
@@ -139,7 +163,7 @@ public class RecycleActivity extends AppCompatActivity {
         }
 
         if(!existsInTheList)
-            requestList.add(new RequestListItem(0, recycleType, amount));
+            requestList.add(new RequestListItem(recycleType, amount));
 
         itemAdapter.notifyDataSetChanged();
     }

@@ -1,14 +1,15 @@
 package com.example.rcl_app.model;
 
-public class RequestListItem
-{
-    private int requestItemId;
+import com.google.gson.annotations.SerializedName;
+
+public class RequestListItem {
+
+    @SerializedName("name")
     private String requestItemName;
+    @SerializedName("quantity")
     private int requestItemQuantity;
 
-    public RequestListItem(int requestItemId, String requestItemName, int requestItemQuantity)
-    {
-        this.requestItemId = requestItemId;
+    public RequestListItem(String requestItemName, int requestItemQuantity) {
         this.requestItemName = requestItemName;
         this.requestItemQuantity = requestItemQuantity;
     }
@@ -21,13 +22,11 @@ public class RequestListItem
         this.requestItemQuantity += quantity;
     }
 
-    public String getRequestItemName()
-    {
+    public String getRequestItemName() {
         return requestItemName;
     }
 
-    public int getRequestItemQuantity()
-    {
+    public int getRequestItemQuantity() {
         return requestItemQuantity;
     }
 }
