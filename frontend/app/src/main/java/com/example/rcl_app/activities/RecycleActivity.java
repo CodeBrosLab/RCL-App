@@ -146,6 +146,7 @@ public class RecycleActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                Toast.makeText(getApplicationContext(), "Pending Approval", Toast.LENGTH_SHORT).show();
             }
         });
     }

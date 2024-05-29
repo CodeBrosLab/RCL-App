@@ -20,6 +20,7 @@
     <string name="type">Type</string>
 
     <string name="listTxtTitle">List</string>
+    <string name="openRequests">Open Requests</string>
 
     //Buttons
     <string name="gotorcl">RECYCLE</string>
@@ -33,4 +34,5 @@
 
     <string name="ipv4">192.168.1.198</string>
     <string name="top3">Top 3 Recyclers</string>
+    <string name="points">Points</string>
 </resources>

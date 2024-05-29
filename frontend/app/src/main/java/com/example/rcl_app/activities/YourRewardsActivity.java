@@ -19,13 +19,18 @@ public class YourRewardsActivity extends AppCompatActivity {
     private Button rclButton;
     private UserPointsOkHttpHandler getUserPoints;
     private int userPoints;
+    private TextView totalPointsTextView;
     private CircularProgressIndicator progressBar;
+    private ImageView logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_rewards);
-        ImageView logoutButton = findViewById(R.id.logout_button);
+
+        logoutButton = findViewById(R.id.logout_button);
+        totalPointsTextView = findViewById(R.id.totalPointsTextView);
+        progressBar = findViewById(R.id.progressBar);
 
         getUserPoints = new UserPointsOkHttpHandler(this);
 
@@ -38,10 +43,11 @@ public class YourRewardsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        totalPointsTextView.setText(Integer.toString(userPoints));
+
         //We give rewards every 1000 points. To make user see his progress we keep the modulo of the division of his points with the max value that
         //can be represented from our progressbar.
         //If he has 1800 points the next reward is in 2000 points so 1800 % 1000 = 800 and this is the value that will be shown to the progress bar
-        progressBar = findViewById(R.id.progressBar);
         progressBar.setProgress(userPoints % 1000, true);
 
         rclButton = findViewById(R.id.rclButton);

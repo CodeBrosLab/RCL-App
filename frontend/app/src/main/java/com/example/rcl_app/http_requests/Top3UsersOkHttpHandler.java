@@ -9,6 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -19,7 +21,7 @@ public class Top3UsersOkHttpHandler {
     private String ip;
 
 
-    public Top3UsersOkHttpHandler(Context context, TextView top1,TextView top2,TextView top3) throws Exception {
+    public Top3UsersOkHttpHandler(Context context, List<TextView> top3UserFieldsList) throws Exception {
 
         this.context = context;
         ip = context.getString(R.string.ipv4);
@@ -36,12 +38,8 @@ public class Top3UsersOkHttpHandler {
             String username = jsonObject.getString("username");
             String points = jsonObject.getString("total_points");
 
-            if(i==0)
-                top1.setText(username + " " +points);
-            else if(i==1)
-                top2.setText(username + " " +points);
-            if(i==2)
-                top3.setText(username + " " +points);
+            top3UserFieldsList.get(2*i).setText(username);
+            top3UserFieldsList.get(2*i + 1).setText(points);
 
         }
 

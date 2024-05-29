@@ -196,27 +196,42 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/recycleButton"
-        android:layout_width="256dp"
-        android:layout_height="44dp"
-        android:backgroundTint="@color/green"
-        android:text="@string/recycleBtnTxt"
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.328"
-        app:layout_constraintStart_toEndOf="@+id/backToRewardsButton"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageButton
-        android:id="@+id/backToRewardsButton"
-        android:layout_width="53dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="44dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recycleButton"
-        app:srcCompat="@drawable/back_btn" />
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/backToRewardsButton"
+            android:layout_width="53dp"
+            android:layout_height="43dp"
+            android:src="@drawable/back_btn" />
+
+        <Space
+            android:layout_width="32dp"
+            android:layout_height="0dp" />
+
+        <Button
+            android:id="@+id/recycleButton"
+            android:layout_width="290dp"
+            android:layout_height="44dp"
+            android:backgroundTint="@color/green"
+            android:text="@string/recycleBtnTxt" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

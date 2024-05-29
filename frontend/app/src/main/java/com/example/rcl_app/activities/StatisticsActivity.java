@@ -13,6 +13,9 @@ import com.example.rcl_app.http_requests.Top3UsersOkHttpHandler;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -24,13 +27,25 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
-        TextView top1, top2, top3;
-        top1 = findViewById(R.id.top1);
-        top2 = findViewById(R.id.top2);
-        top3 = findViewById(R.id.top3);
+        TextView firstUsername, secondUsername, thirdUsername, firstUserPoints, secondUserPoints, thirdUserPoints;
+
+        firstUsername = findViewById(R.id.firstUsername);
+        secondUsername = findViewById(R.id.secondUsername);
+        thirdUsername = findViewById(R.id.thirdUsername);
+        firstUserPoints = findViewById(R.id.firstUserPoints);
+        secondUserPoints = findViewById(R.id.secondUserPoints);
+        thirdUserPoints = findViewById(R.id.thirdUserPoints);
+
+        List<TextView> top3UserFieldsList = new ArrayList<>();
+        top3UserFieldsList.add(firstUsername);
+        top3UserFieldsList.add(firstUserPoints);
+        top3UserFieldsList.add(secondUsername);
+        top3UserFieldsList.add(secondUserPoints);
+        top3UserFieldsList.add(thirdUsername);
+        top3UserFieldsList.add(thirdUserPoints);
 
         try {
-            top3Users = new Top3UsersOkHttpHandler(context, top1, top2, top3);
+            top3Users = new Top3UsersOkHttpHandler(context, top3UserFieldsList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,8 +54,7 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     public void backToAdminActivity(View view){
-        Intent adminOpenRequestsIntent = new Intent(StatisticsActivity.this, AdminOpenRequestsActivity.class);
-        startActivity(adminOpenRequestsIntent);
+        finish();
     }
 
 
