@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/ultra"
             android:text="@string/rewards"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -45,19 +46,39 @@
             android:layout_height="319dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="70dp"
-            android:backgroundTint="@color/blue_transparent"
+            android:backgroundTint="@color/green_transparent"
             app:cardCornerRadius="20dp">
 
-            <TextView
-                android:id="@+id/totalPoints"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Your Total Points Are:"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/totalPoints"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/gorditas"
+                    android:gravity="center_horizontal"
+                    android:text="@string/yourTotalPointsAre"
+                    android:textColor="@color/white"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/totalPointsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/fredericka_the_great"
+                    android:text="1500"
+                    android:textColor="@color/white"
+                    android:textSize="80dp" />
+
+            </LinearLayout>
 
 
         </androidx.cardview.widget.CardView>
@@ -71,9 +92,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/green"
+        android:fontFamily="@font/gorditas"
         android:text="@string/gotorcl"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

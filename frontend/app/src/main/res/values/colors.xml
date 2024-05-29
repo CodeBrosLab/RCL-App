@@ -14,4 +14,6 @@
 
     <color name="blue_transparent">#BC006ED3</color>
     <color name="green_transparent">#C366BF3A</color>
+    <color name="gold">#FFC107</color>
+
 </resources>
