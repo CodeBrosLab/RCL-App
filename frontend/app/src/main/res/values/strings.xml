@@ -21,7 +21,8 @@
 
     <string name="listTxtTitle">List</string>
     <string name="openRequests">Open Requests</string>
-
+    <string name="updateItemPoints">Update item points</string>
+    <string name="update">Update</string>
     //Buttons
     <string name="gotorcl">RECYCLE</string>
     <string name="addBtnTxt">ADD</string>

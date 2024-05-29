@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.UpdateRecycleItemPointsActivity"
+    android:background="@drawable/recycling_image">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="43dp"
+        android:layout_centerVertical="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/rcl_logo_header"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:fontFamily="@font/ultra"
+        android:text="@string/updateItemPoints"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="323dp"
+        android:layout_height="480dp"
+        android:backgroundTint="@color/white_transparent"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclePointsEditList"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/backToStatisticsBtn"
+            android:layout_width="53dp"
+            android:layout_height="43dp"
+            android:src="@drawable/back_btn"/>
+
+        <Space
+            android:layout_width="32dp"
+            android:layout_height="0dp" />
+
+        <Button
+            android:id="@+id/updatePointsBtn"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/gorditas"
+            android:backgroundTint="@color/blue"
+            android:text="@string/update" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

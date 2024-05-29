@@ -8,22 +8,46 @@
 
     <!-- Your existing views -->
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="130dp"
-        android:layout_height="43dp"
-        android:src="@drawable/rcl_logo_header"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/headerLayout"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="130dp"
+            android:layout_height="43dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/rcl_logo_header"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintVertical_bias="0.023" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/updateItemPoints"
+            android:textSize="20dp"
+            android:id="@+id/editItemPointsBtn"
+            android:fontFamily="@font/freckle_face"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="230dp"
+            android:textColor="@color/white"
+            android:clickable="true"/>
+
+
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="@id/headerLayout"
         android:text="@string/openRequests"
         android:textColor="@color/black"
         android:textSize="30dp"
@@ -85,6 +109,9 @@
             android:id="@+id/statsBtn"
             android:layout_width="290dp"
             android:layout_height="44dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/freckle_face"
             android:backgroundTint="@color/blue"
             android:text="@string/statistics" />
 

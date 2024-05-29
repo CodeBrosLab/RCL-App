@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class AdminOpenRequestsActivity extends AppCompatActivity {
     private OpenRequestExpandableListViewAdapter openRequestAdapter;
     private List<OpenRequestDetails> openRequestDetailsList;
     private ImageButton backToLogin;
+    private TextView editItemPointsBtn;
     private Button statsBtn;
 
     @Override
@@ -34,7 +36,7 @@ public class AdminOpenRequestsActivity extends AppCompatActivity {
 
         backToLogin = findViewById(R.id.backToLogin);
         statsBtn = findViewById(R.id.statsBtn);
-        ImageView logoutButton = findViewById(R.id.logout_button);
+        editItemPointsBtn = findViewById(R.id.editItemPointsBtn);
 
         backToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +50,14 @@ public class AdminOpenRequestsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent statsIntent = new Intent(AdminOpenRequestsActivity.this, StatisticsActivity.class);
                 startActivity(statsIntent);
+            }
+        });
+
+        editItemPointsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent updatePointsIntent = new Intent(AdminOpenRequestsActivity.this, UpdateRecycleItemPointsActivity.class);
+                startActivity(updatePointsIntent);
             }
         });
 
