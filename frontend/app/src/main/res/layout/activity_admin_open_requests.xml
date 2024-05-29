@@ -36,10 +36,10 @@
             android:layout_height="match_parent"
             app:cardCornerRadius="20dp">
 
-                <ExpandableListView
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:id="@+id/openRequestsList"/>
+            <ExpandableListView
+                android:id="@+id/openRequestsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </androidx.cardview.widget.CardView>
 
@@ -68,6 +68,20 @@
         app:layout_constraintStart_toEndOf="@+id/backToLogin"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.35" />
+
+    <ImageView
+        android:id="@+id/logout_button"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:clickable="true"
+        android:onClick="logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/logout_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

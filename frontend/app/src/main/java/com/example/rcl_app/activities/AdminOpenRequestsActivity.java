@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class AdminOpenRequestsActivity extends AppCompatActivity {
 
         backToLogin = findViewById(R.id.backToLogin);
         statsBtn = findViewById(R.id.statsBtn);
+        ImageView logoutButton = findViewById(R.id.logout_button);
 
         backToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,17 +73,10 @@ public class AdminOpenRequestsActivity extends AppCompatActivity {
 
 
     }
-}
 
-//        requestList.add(new RequestListItem(1, "Glass", 10));
-//        requestList.add(new RequestListItem(2, "Paper", 30));
-//        /*requestList.add(new RequestListItem(2, "Paper", 30));
-//        requestList.add(new RequestListItem(2, "Paper", 30));
-//        requestList.add(new RequestListItem(2, "Paper", 30));
-//        requestList.add(new RequestListItem(2, "Paper", 30));
-//        requestList.add(new RequestListItem(2, "Paper", 30));
-//        requestList.add(new RequestListItem(2, "Paper", 30));
-//        requestList.add(new RequestListItem(2, "Paper", 30));*///
-//
-//        openRequestDetailsList.add(new OpenRequestDetails(1, "thanos", requestList));//        openRequestDetailsList.add(new OpenRequestDetails(2, "andreas", requestList));
-//        openRequestDetailsList.add(new OpenRequestDetails(3, "george", requestList));
+    public void logout(View view){
+        Intent logout = new Intent(AdminOpenRequestsActivity.this, LoginActivity.class);
+        startActivity(logout);
+
+    }
+}

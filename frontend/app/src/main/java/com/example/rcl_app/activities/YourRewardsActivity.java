@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class YourRewardsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_rewards);
+        ImageView logoutButton = findViewById(R.id.logout_button);
 
         getUserPoints = new UserPointsOkHttpHandler(this);
 
@@ -51,5 +53,11 @@ public class YourRewardsActivity extends AppCompatActivity {
                 startActivity(recycleIntent);
             }
         });
+    }
+
+    public void logout(View view){
+        Intent logout = new Intent(YourRewardsActivity.this, LoginActivity.class);
+        startActivity(logout);
+
     }
 }

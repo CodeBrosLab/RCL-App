@@ -8,10 +8,9 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rcl_app.R;
-import com.example.rcl_app.http_requests.DeclineRequestOkHttpHandler;
+import com.example.rcl_app.http_requests.DecisionRequestOkHttpHandler;
 import com.example.rcl_app.model.OpenRequestDetails;
 import com.example.rcl_app.model.RequestListItem;
 
@@ -97,6 +96,16 @@ public class OpenRequestExpandableListViewAdapter extends BaseExpandableListAdap
             @Override
             public void onClick(View view) {
 
+                boolean action = true;
+                try {
+                    DecisionRequestOkHttpHandler drOkHttp = new DecisionRequestOkHttpHandler(context,data.get(i).getRequestId(),action);
+                    ;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                removeRequestFromList(i);
+
             }
         });
 
@@ -104,8 +113,9 @@ public class OpenRequestExpandableListViewAdapter extends BaseExpandableListAdap
             @Override
             public void onClick(View view) {
 
+                boolean action = false;
                 try {
-                    DeclineRequestOkHttpHandler drOkHttp = new DeclineRequestOkHttpHandler(context,data.get(i).getRequestId());
+                    DecisionRequestOkHttpHandler drOkHttp = new DecisionRequestOkHttpHandler(context,data.get(i).getRequestId(),action);
                     ;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -129,4 +139,3 @@ public class OpenRequestExpandableListViewAdapter extends BaseExpandableListAdap
         notifyDataSetChanged();
     }
 }
-
