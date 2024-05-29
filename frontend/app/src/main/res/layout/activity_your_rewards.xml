@@ -86,16 +86,23 @@
                     android:layout_gravity="center_horizontal"
                     android:textSize="18dp"
                     android:fontFamily="@font/gorditas"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="20dp"/>
 
                 <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
                     android:id="@+id/progressBar"
-                    app:indicatorColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="30dp"/>
+                    android:layout_marginTop="30dp"
+                    android:elevation="10dp"
+                    android:indeterminate="false"
+                    android:max="1000"
+                    android:progress="60"
+                    android:visibility="visible"
+                    app:indicatorColor="@color/white"
+                    app:indicatorDirectionCircular="counterclockwise"
+                    app:trackColor="@color/green_transparent"
+                    app:trackThickness="5dp" />
 
             </LinearLayout>
 

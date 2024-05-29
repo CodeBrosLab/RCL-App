@@ -11,12 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rcl_app.R;
 import com.example.rcl_app.http_requests.UserPointsOkHttpHandler;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class YourRewardsActivity extends AppCompatActivity {
 
     private Button rclButton;
     private UserPointsOkHttpHandler getUserPoints;
     private int userPoints;
+    private CircularProgressIndicator progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,11 @@ public class YourRewardsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        TextView totalPoints = findViewById(R.id.totalPoints);
-        totalPoints.setText("Your Total Points Are: " + userPoints);
+        //We give rewards every 1000 points. To make user see his progress we keep the modulo of the division of his points with the max value that
+        //can be represented from our progressbar.
+        //If he has 1800 points the next reward is in 2000 points so 1800 % 1000 = 800 and this is the value that will be shown to the progress bar
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setProgress(userPoints % 1000, true);
 
         rclButton = findViewById(R.id.rclButton);
         rclButton.setOnClickListener(new View.OnClickListener() {
