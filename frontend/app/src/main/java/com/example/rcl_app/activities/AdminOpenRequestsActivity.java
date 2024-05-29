@@ -70,8 +70,6 @@ public class AdminOpenRequestsActivity extends AppCompatActivity {
             Toast.makeText(this, "Error loading requests", Toast.LENGTH_SHORT).show();
         }
 
-
-
     }
 
     public void logout(View view){
