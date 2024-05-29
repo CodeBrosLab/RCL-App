@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rcl_app.R;
+import com.example.rcl_app.http_requests.DeclineRequestOkHttpHandler;
 import com.example.rcl_app.model.OpenRequestDetails;
 import com.example.rcl_app.model.RequestListItem;
 
@@ -95,15 +96,22 @@ public class OpenRequestExpandableListViewAdapter extends BaseExpandableListAdap
         approveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Needs to be implemented", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         declineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                data.remove(i);
-                notifyDataSetChanged();
+
+                try {
+                    DeclineRequestOkHttpHandler drOkHttp = new DeclineRequestOkHttpHandler(context,data.get(i).getRequestId());
+                    ;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                removeRequestFromList(i);
             }
         });
 
@@ -114,4 +122,11 @@ public class OpenRequestExpandableListViewAdapter extends BaseExpandableListAdap
     public boolean isChildSelectable(int i, int i1) {
         return true;
     }
+
+    public void removeRequestFromList (int i) { //removes the request either being rejected or accepted
+
+        data.remove(i);
+        notifyDataSetChanged();
+    }
 }
+
