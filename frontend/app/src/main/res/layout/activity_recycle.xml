@@ -37,6 +37,7 @@
             android:layout_gravity="center|top"
             android:layout_marginTop="10dp"
             android:text="Recycle"
+            android:fontFamily="@font/ultra"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -61,13 +62,14 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:text="@string/quantity"
+                    android:fontFamily="@font/gorditas"
                     android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
-                    android:layout_marginStart="45dp"
+                    android:layout_marginStart="35dp"
                     android:background="@drawable/rounded_corners_background"
                     android:orientation="horizontal">
 
@@ -76,6 +78,7 @@
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/grey"
+                        android:fontFamily="@font/gorditas"
                         android:text="0"
                         android:inputType="number"
                         android:id="@+id/amountInput"/>
@@ -129,6 +132,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:text="@string/type"
+                    android:fontFamily="@font/gorditas"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -161,7 +165,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/blue"
-            android:text="@string/addBtnTxt" />
+            android:text="@string/addBtnTxt"
+            android:textSize="20dp"
+            android:fontFamily="@font/freckle_face"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="249dp"
@@ -176,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
                 android:layout_marginTop="10dp"
-
+                android:fontFamily="@font/gorditas"
                 android:text="@string/listTxtTitle"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -225,7 +231,9 @@
             android:layout_width="290dp"
             android:layout_height="44dp"
             android:backgroundTint="@color/green"
-            android:text="@string/recycleBtnTxt" />
+            android:text="@string/recycleBtnTxt"
+            android:textSize="20dp"
+            android:fontFamily="@font/freckle_face"/>
 
         <Space
             android:layout_width="16dp"

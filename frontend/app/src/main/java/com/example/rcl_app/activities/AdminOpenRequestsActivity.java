@@ -2,6 +2,7 @@ package com.example.rcl_app.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import com.example.rcl_app.R;
 import com.example.rcl_app.adapters.OpenRequestExpandableListViewAdapter;

@@ -62,8 +62,7 @@ public class YourRewardsActivity extends AppCompatActivity {
     }
 
     public void logout(View view){
-        Intent logout = new Intent(YourRewardsActivity.this, LoginActivity.class);
-        startActivity(logout);
+        finish();
 
     }
 }

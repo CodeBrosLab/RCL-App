@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/green"
-        android:fontFamily="@font/gorditas"
+        android:fontFamily="@font/freckle_face"
         android:text="@string/gotorcl"
         android:textColor="@color/black"
         android:textSize="20dp"

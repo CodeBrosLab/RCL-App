@@ -33,11 +33,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/updateItemPoints"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:id="@+id/editItemPointsBtn"
             android:fontFamily="@font/freckle_face"
             android:layout_centerVertical="true"
-            android:layout_marginStart="230dp"
+            android:layout_marginStart="260dp"
             android:textColor="@color/white"
             android:clickable="true"/>
 

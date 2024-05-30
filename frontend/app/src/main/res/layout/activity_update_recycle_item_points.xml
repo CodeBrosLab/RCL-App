@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:textColor="@color/white"
-            android:fontFamily="@font/gorditas"
+            android:fontFamily="@font/freckle_face"
             android:backgroundTint="@color/blue"
             android:text="@string/update" />
 

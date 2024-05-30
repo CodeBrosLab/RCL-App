@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:text="Item 1"
         android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/gorditas"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/itemName" />
@@ -19,7 +21,8 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Something"
-        android:layout_marginLeft="70dp"
+        android:fontFamily="@font/gorditas"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
         android:id="@+id/editItemInput"/>
 
