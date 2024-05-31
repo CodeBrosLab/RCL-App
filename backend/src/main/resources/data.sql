@@ -1,8 +1,7 @@
 USE rcl;
 
 INSERT INTO users (username, password, total_points) VALUES
-("a", "a", 0),
-("u", "u", 1000),
+("admin", "admin", 0),
 ("thanos20", "th@nn", 400),
 ("andreas59", "andreW", 500),
 ("eleni12", "changeme", 1200),
