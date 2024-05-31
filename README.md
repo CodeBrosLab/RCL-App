@@ -2,9 +2,9 @@
   Recycling Reward App
 </h1>
 
-<h1 align="center">
-  ![RCL](frontend/app/src/main/res/drawable/rcl_logo_header.png)
-</h1>
+<p align="center">
+  <img src="frontend/app/src/main/res/drawable/rcl_logo_header.png" alt="rcl_logo_header">
+</p>
 
 <h1 align="center">
   Department of Applied Informatics
