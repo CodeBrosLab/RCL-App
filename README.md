@@ -65,7 +65,7 @@ The developed system is not standalone but interacts with other software systems
 - The system requires Java 17 or higher and Android Studio Flamingo | 2022.2.1 or higher.
 - The system requires Android Gradle Version 8.0 and Minimum SDK Version 33 (API 33: Android 13.0 Tiramisu).
 - The system requires a system like XAMPP for operating an Apache Server and a database.
-- The network interface of the application to the decorator is done locally using the iPv4 address, the file where it can be specified for each computer is located in the Frontend with the name Strings.xml and iPv4 property name.
+- The network interface of the application to the server is done locally using the iPv4 address. The file where it can be specified for each computer is located in the Frontend with the name Strings.xml and iPv4 property name.
 
 ### Assumptions
 - Each user is identified via a username and password.
