@@ -1,30 +1,18 @@
 <h1 align="center">
-  Recycling Reward App
+  Department of Applied Informatics -  Mobile App Development
 </h1>
-
 <p align="center">
   <img src="frontend/app/src/main/res/drawable/rcl_logo_header.png" alt="rcl_logo_header">
 </p>
-
+  
 <h1 align="center">
-  Department of Applied Informatics
-  
+  Recycling Reward App
 </h1>
-
-<h2 align="center">
-  Mobile App Development
-  
-</h2>
-
-
 
 
 ### Authors:
 - [Thanos Moschou](https://github.com/thanosmoschou)
 - [Andreas Hadjiantonis](https://github.com/AndreasHadjiantonis)
-
----
-
 
 ---
 # Recycling Reward App
@@ -77,6 +65,7 @@ The developed system is not standalone but interacts with other software systems
 - The system requires Java 17 or higher and Android Studio Flamingo | 2022.2.1 or higher.
 - The system requires Android Gradle Version 8.0 and Minimum SDK Version 33 (API 33: Android 13.0 Tiramisu).
 - The system requires a system like XAMPP for operating an Apache Server and a database.
+- The network interface of the application to the decorator is done locally using the iPv4 address, the file where it can be specified for each computer is located in the Frontend with the name Strings.xml and iPv4 property name.
 
 ### Assumptions
 - Each user is identified via a username and password.
