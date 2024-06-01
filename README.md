@@ -90,7 +90,7 @@ The files used and created are as follows:
 #### Frontend
 Classes are divided into 4 packages: `Activities`, `Adapters`, `HttpRequests`, and `Model`.
 
-- **Activities**
+- **Folder - Activities**
   - `LoginActivity`: Initial screen at application launch responsible for entering user details or transitioning to the Registration screen if the user is new.
   - `RegistrationActivity`: Registration screen responsible for entering user details.
   - `AdminOpenRequestsActivity`: Screen where the administrator sees open requests and approves or rejects them accordingly.
@@ -99,27 +99,30 @@ Classes are divided into 4 packages: `Activities`, `Adapters`, `HttpRequests`, a
   - `UpdateRecycleItemPointsActivity`: Screen where the administrator can modify the reward points for each recyclable item.
   - `YourRewardsActivity`: Screen responsible for displaying user points and a progress bar showing the user's progress towards the next level.
 
-- **HttpRequests**
+- **Folder - HttpRequests**
   - Contains all classes handling data from each activity and making GET or POST API calls to the server as needed.
 
-- **Model**
+- **Folder - Model**
   - `OpenRequestDetails`
   - `RecycleItem`
-  - `RecycleListItem`
+  - `RecycleListItem` <br/>
+     These classes are designed based on specific design patterns to intercommunicate between other classes, allowing the exchange of data and the storage of information for the different objects.
 
-- **Adapters**
+- **Folder - Adapters**
   - `OpenRequestBodyListAdapter`
   - `OpenRequestExpandableListViewAdapter`
   - `RecycleItemsAdapter`
-  - `RequestListItemAdapter`
+  - `RequestListItemAdapter`<br/>
+    These classes are designed to bridge the gap between a Display/Activity and its class and relates to elements of the UI that displays that data.
+    
 
 #### Backend
 Classes are divided into 4 packages: `Controllers`, `Model`, `Repositories`, and `Services`.
 
-- **Controllers**
+- **Folder - Controllers**
   - `RequestsController`: Responsible for handling all requests to the server, calling the corresponding service for each request.
 
-- **Model**
+- **Folder - Model**
   - `LoginRequest`: Login details (username, password) are converted to an object of this class for checking if the user exists in the database.
   - `RecycleItem`: Represents recyclable items and corresponds to the `recycle_items` table.
   - `RecycleRequest`: User's request for reward points is converted to an object of this class for database storage, corresponding to the `recycle_requests` table.
@@ -129,14 +132,14 @@ Classes are divided into 4 packages: `Controllers`, `Model`, `Repositories`, and
   - `User`: Corresponds to the `users` table.
   - `UserDTO`: Data Transfer Object class for `User`.
 
-- **Repositories**
+- **Folder - Repositories**
   - `RecycleItemsRepository`: Used by JPA for storing `RecycleItems` objects.
   - `RecycleRequestListItemsRepository`: Repository for `RecycleRequestListItem` objects.
   - `RecycleRequestsRepository`: Repository for `RecycleRequest` objects.
   - `UsersRepository`: Repository for `User` objects.
   - Note: These are interfaces extending `JpaRepository`, with methods implemented automatically by JPA.
 
-- **Services**
+- **Folder - Services**
   - `RecycleItemsService`: Contains a `RecycleItemsRepository` object to communicate with the database, providing methods accessible by `RequestsController`.
   - `RecycleRequestListItemsService`: Contains a `RecycleRequestListItemsRepository` object, with methods called by `RequestsController`.
   - `RecycleRequestsService`: Service for handling `RecycleRequest` objects.
@@ -146,4 +149,4 @@ Note: There is also a `BackendRclApplication` class that serves as the server's 
 
 ## Links
 - **Github**: [Recycling Reward App Repository](https://github.com/CodeBrosLab/RCL-App)
-- **YouTube**:
+- **YouTube**: [RCL-App Demo](https://youtu.be/KlCXNI6E5c4)
