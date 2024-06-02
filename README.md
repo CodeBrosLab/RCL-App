@@ -145,7 +145,8 @@ Classes are divided into 4 packages: `Controllers`, `Model`, `Repositories`, and
   - `RecycleRequestsService`: Service for handling `RecycleRequest` objects.
   - `UserService`: Service for handling `User` objects.
 
-Note: There is also a `BackendRclApplication` class that serves as the server's entry point.
+Note: There is also a `BackendRclApplication` class that serves as the server's entry point,<br/>
+as well as a `DatabaseInitializer` class which is responsible for initializing the database by executing `schema.sql` and `data.sql`.
 
 ## Links
 - **Github**: [Recycling Reward App Repository](https://github.com/CodeBrosLab/RCL-App)
