@@ -52,6 +52,26 @@ The functions of the application are as follows:
 - R2: Viewing top statistics.
 - R(2++): Form for configuring rewards based on material/amount recycled.
 
+<h1>
+ Screenshots
+</h1>
+
+## User
+<p>
+  <img src=screenshots/User/Register.png width="200" height="400">
+  <img src=screenshots/User/Login.png width="200" height="400"> 
+  <img src=screenshots/User/yourRewards.png width="200" height="400">
+  <img src=screenshots/User/recycle.png width="200" height="400">  
+</p>
+
+## Admin
+<p>
+  <img src=screenshots/Admin/adminOpenRequestsList.png width="200" height="400"> 
+  <img src=screenshots/Admin/adminOpenRequestsListOpen.png width="200" height="400">
+  <img src=screenshots/Admin/top3Recyclers.png width="200" height="400">  
+</p>
+
+
 ## General Description
 
 ### Application Perspective
