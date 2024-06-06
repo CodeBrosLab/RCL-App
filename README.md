@@ -84,7 +84,7 @@ The developed system is not standalone but interacts with other software systems
 ### Constraints
 - The system requires Java 17 or higher and Android Studio Flamingo | 2022.2.1 or higher.
 - The system requires Android Gradle Version 8.0 and Minimum SDK Version 24 (API 24: Android 7.0 Nougat).
-- The system requires a database. To store the database, we used XAMPP, which has a pre-installed MySQL server that is also pre-configured. We used XAMPP for simplicity reasons. If you do not want to use XAMPP, you can set up your own MySQL server locally and run the application.
+- The system requires a database. To store the database and for simplicity reasons, we used XAMPP, which has a pre-installed MySQL server that is also pre-configured. If you do not want to use XAMPP, you can set up your own MySQL server locally and run the application.
 - The network interface of the application to the server is done locally using the iPv4 address. The file where it can be specified for each computer is located in the Frontend with the name Strings.xml and iPv4 property name.
 
 ### Assumptions
