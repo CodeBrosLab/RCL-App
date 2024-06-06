@@ -32,6 +32,7 @@
   - [Class Presentation](#class-presentation)
     - [Frontend](#frontend)
     - [Backend](#backend)
+- [Running Instructions](#running-instructions)
 - [Links](#links)
 
 ## Introduction
@@ -84,7 +85,7 @@ The developed system is not standalone but interacts with other software systems
 ### Constraints
 - The system requires Java 17 or higher and Android Studio Flamingo | 2022.2.1 or higher.
 - The system requires Android Gradle Version 8.0 and Minimum SDK Version 24 (API 24: Android 7.0 Nougat).
-- The system requires a database. To store the database, we used XAMPP, which has a pre-installed MySQL server that is also pre-configured. We used XAMPP for simplicity reasons. If you do not want to use XAMPP, you can set up your own MySQL server locally and run the application.
+- The system requires a database. To store the database and for simplicity reasons, we used XAMPP, which has a pre-installed MySQL server that is also pre-configured. If you do not want to use XAMPP, you can set up your own MySQL server locally and run the application.
 - The network interface of the application to the server is done locally using the iPv4 address. The file where it can be specified for each computer is located in the Frontend with the name Strings.xml and iPv4 property name.
 
 ### Assumptions
@@ -166,6 +167,20 @@ Classes are divided into 4 packages: `Controllers`, `Model`, `Repositories`, and
   - `UserService`: Service for handling `User` objects.
 
 Note: There is also a `BackendRclApplication` class that serves as the server's entry point, as well as a `DatabaseInitializer` class which is responsible for initializing the database by executing `schema.sql` and `data.sql`.
+
+## Running Instructions
+
+### Backend
+The following instructions show how you can run the backend server using XAMPP. </br></br>
+
+ - First, open the XAMPP Control Panel and click on ```start``` button of ```Apache``` and ```MySQL``` servers accordingly. </br>
+You need to have Apache enabled in order to have access to ```phpMyAdmin``` page. </br></br>
+ - From the XAMPP control panel click on ```admin``` button that is next to ```start/stop``` button of MySQL server and the admin page will open to your browser. From this page you can control all of your databases. </br></br>
+ - XAMPP provides us with a ```root``` user who has an empty password, so these are the credentials that our backend server uses to connect to the database. </br></br>
+ - Before you run the backend server for the first time, you need to create the database that will store all the data. You can import the ```initialScriptForDB.sql``` directly from the admin page that is opened to your browser. From the options at the top part of the screen, select ```Import```. Then click on ```File Select```. Find the project's backend folder and select the ```initialScriptForDB.sql```. Then click on ```import``` button that is at the bottom of the screen. </br>
+The database is now created. This import is needed only for the first time you will run the backend server. </br></br>
+ - Now open the project's ```backend``` folder to a terminal window. Type the following command in order to run the server: </br>```java -jar backend_rcl.jar```. </br></br>
+The server is now up and running. Keep in mind that you need to enable the ```MySQL``` and ```Apache``` servers before you run the previous command, otherwise the backend server will not be able to connect to the database.</br></br>
 
 ## Links
 - **Github**: [Recycling Reward App Repository](https://github.com/CodeBrosLab/RCL-App)
