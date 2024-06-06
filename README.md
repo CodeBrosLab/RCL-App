@@ -173,9 +173,9 @@ Note: There is also a `BackendRclApplication` class that serves as the server's 
 ### Backend
 The following instructions show how you can run the backend server using XAMPP. </br></br>
 
- - First, open the XAMPP Control Panel and click on ```start``` button of ```Apache``` and ```MySQL``` servers accordingly. </br>
+ - First, open the XAMPP Control Panel and click on ```Start``` button of ```Apache``` and ```MySQL``` servers accordingly. </br>
 You need to have Apache enabled in order to have access to ```phpMyAdmin``` page. </br></br>
- - From the XAMPP control panel click on ```admin``` button that is next to ```start/stop``` button of MySQL server and the admin page will open to your browser. From this page you can control all of your databases. </br></br>
+ - From the XAMPP control panel click on ```Admin``` button that is next to ```Start/Stop``` button of MySQL server and the admin page will open to your browser. From this page you can control all of your databases. </br></br>
  - XAMPP provides us with a ```root``` user who has an empty password, so these are the credentials that our backend server uses to connect to the database. </br></br>
  - Before you run the backend server for the first time, you need to create the database that will store all the data. You can import the ```initialScriptForDB.sql``` directly from the admin page that is opened to your browser. From the options at the top part of the screen, select ```Import```. Then click on ```File Select```. Find the project's backend folder and select the ```initialScriptForDB.sql```. Then click on ```import``` button that is at the bottom of the screen. </br>
 The database is now created. This import is needed only for the first time you will run the backend server. </br></br>
