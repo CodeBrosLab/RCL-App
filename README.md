@@ -168,19 +168,45 @@ Classes are divided into 4 packages: `Controllers`, `Model`, `Repositories`, and
 
 Note: There is also a `BackendRclApplication` class that serves as the server's entry point, as well as a `DatabaseInitializer` class which is responsible for initializing the database by executing `schema.sql` and `data.sql`.
 
+<hr style="border: 5 solid black;">
+
 ## Running Instructions
 
-### Backend
-The following instructions show how you can run the backend server using XAMPP. </br></br>
+## Frontend
 
- - First, open the XAMPP Control Panel and click on ```Start``` button of ```Apache``` and ```MySQL``` servers accordingly. </br>
-You need to have Apache enabled in order to have access to ```phpMyAdmin``` page. </br></br>
- - From the XAMPP control panel click on ```Admin``` button that is next to ```Start/Stop``` button of MySQL server and the admin page will open to your browser. From this page you can control all of your databases. </br></br>
- - XAMPP provides us with a ```root``` user who has an empty password, so these are the credentials that our backend server uses to connect to the database. </br></br>
- - Before you run the backend server for the first time, you need to create the database that will store all the data. You can import the ```initialScriptForDB.sql``` directly from the admin page that is opened to your browser. From the options at the top part of the screen, select ```Import```. Then click on ```File Select```. Find the project's backend folder and select the ```initialScriptForDB.sql```. Then click on ```import``` button that is at the bottom of the screen. </br>
-The database is now created. This import is needed only for the first time you will run the backend server. </br></br>
- - Now open the project's ```backend``` folder to a terminal window. Type the following command in order to run the server: </br>```java -jar backend_rcl.jar```. </br></br>
-The server is now up and running. Keep in mind that you need to enable the ```MySQL``` and ```Apache``` servers before you run the previous command, otherwise the backend server will not be able to connect to the database.</br></br>
+The application can be executed within Android Studio using the standard run functionality.
+
+<hr style="border: 2 solid black;">
+
+## Backend
+
+### Prerequisites
+
+- XAMPP Control Panel with Apache and MySQL servers installed and functional.
+- `initialScriptForDB.sql` located within the project's backend folder.
+
+### Database Setup
+
+1. **Start Apache and MySQL Servers**: Launch the XAMPP Control Panel and activate both Apache and MySQL servers using the respective "Start" buttons.
+   
+2. **Access phpMyAdmin**: Apache must be running to access the phpMyAdmin administration panel. Utilize the "Admin" button corresponding to the MySQL server to open the phpMyAdmin interface in your web browser.
+   
+3. **Import Initial Script**:
+    - Within phpMyAdmin, navigate to the "Import" section.
+    - Select the "Choose File" option and locate the `initialScriptForDB.sql` file within the project's backend folder.
+    - Initiate the import process using the "Go" button. (This step is only required for the first-time server execution.)
+
+## Server Execution
+
+1. **Open Terminal in Backend Folder**: Access the project's backend directory using a terminal window.
+
+2. **Run Server Command**: Execute the following command within the terminal:
+    ```sh
+    java -jar backend_rcl.jar
+    ```
+
+### Important Note
+Ensure both Apache and MySQL servers are operational before running the server command. Failure to do so will prevent the backend server from establishing a database connection.
 
 ## Links
 - **Github**: [Recycling Reward App Repository](https://github.com/CodeBrosLab/RCL-App)
